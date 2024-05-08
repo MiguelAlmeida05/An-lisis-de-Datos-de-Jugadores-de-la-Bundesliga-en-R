@@ -1,0 +1,28 @@
+---
+title: "Análisis de Datos de Jugadores de la Bundesliga en R."
+date: 2022-05-04
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: report
+  docx: default
+---
+
+## Resumen.
+
+Para abordar el análisis de datos de jugadores de la Bundesliga en R Studio, el estudio se centra en varios aspectos. Inicialmente, se plantea la hipótesis de que ciertas variables, como la edad, pueden influir en el precio máximo de los jugadores en el mercado. Se emplean diversos métodos estadísticos para explorar y validar esta hipótesis.
+
+El análisis comienza con la carga de bibliotecas necesarias y la importación de los datos del archivo CSV. Se examina la estructura y resumen de los datos para comprender mejor su composición y calidad. Se identifican y manejan los valores faltantes y duplicados en el conjunto de datos. Luego, se realiza un resumen detallado de cada columna, incluyendo el tipo de datos, el número de valores únicos, los valores nulos y duplicados.
+
+Posteriormente, se lleva a cabo un análisis exploratorio, donde se visualizan los recuentos de ciertas variables, como la edad y la nacionalidad, utilizando gráficos de barras y nubes de palabras. Además, se ajusta un modelo de regresión lineal para investigar la relación entre la edad y el precio máximo de los jugadores. El resumen del modelo muestra coeficientes significativos para la edad, lo que sugiere una influencia positiva en el precio máximo.
+
+En resumen, el análisis proporciona una comprensión profunda de los datos de los jugadores de la Bundesliga, explorando su composición, identificando patrones y relaciones importantes, y validando hipótesis de investigación clave, como la relación entre la edad y el precio máximo de los jugadores.
+
+## Introducción.
+
+En el ámbito del análisis de datos de jugadores de fútbol, especialmente en ligas prominentes como la Bundesliga, se ha investigado ampliamente la relación entre diversas variables, como la edad, la posición y el precio de mercado de los jugadores. Estudios previos han demostrado correlaciones significativas entre estos factores, lo que ha permitido a los clubes tomar decisiones informadas en términos de fichajes, contratos y estrategias de equipo.
+
+Sin embargo, este informe aporta novedades al presentar un análisis exhaustivo de datos específicos de la Bundesliga, utilizando herramientas estadísticas avanzadas en R Studio. Además de explorar la relación entre la edad y el precio máximo de los jugadores, se examinan otras variables relevantes, como la nacionalidad, la posición y la trayectoria en el club. La metodología utilizada incorpora técnicas de visualización y modelado de datos para ofrecer una comprensión más profunda de los factores que influyen en el valor de los jugadores en el mercado de transferencias. Además, este informe proporciona una descripción detallada de cada paso del proceso de análisis, lo que permite una replicación fácil y una comprensión clara de los hallazgos. En resumen, este informe contribuye al cuerpo existente de conocimientos al proporcionar una perspectiva única y detallada sobre el análisis de datos de jugadores de la Bundesliga, lo que puede ser de utilidad para clubes, analistas y aficionados interesados en entender mejor el mercado de fichajes y el rendimiento de los jugadores.
+
+
