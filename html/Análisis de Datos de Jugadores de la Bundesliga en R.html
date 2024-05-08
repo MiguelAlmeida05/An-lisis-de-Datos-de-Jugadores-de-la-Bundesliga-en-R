@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2022-05-04">
+
+<title>Análisis de Datos de Jugadores de la Bundesliga en R.</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="Análisis de Datos de Jugadores de la Bundesliga en R_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Análisis de Datos de Jugadores de la Bundesliga en R_files/libs/quarto-html/quarto.js"></script>
+<script src="Análisis de Datos de Jugadores de la Bundesliga en R_files/libs/quarto-html/popper.min.js"></script>
+<script src="Análisis de Datos de Jugadores de la Bundesliga en R_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Análisis de Datos de Jugadores de la Bundesliga en R_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Análisis de Datos de Jugadores de la Bundesliga en R_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Análisis de Datos de Jugadores de la Bundesliga en R_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Análisis de Datos de Jugadores de la Bundesliga en R_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Análisis de Datos de Jugadores de la Bundesliga en R_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Análisis de Datos de Jugadores de la Bundesliga en R_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Análisis de Datos de Jugadores de la Bundesliga en R.</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 4, 2022</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="resumen." class="level2">
+<h2 class="anchored" data-anchor-id="resumen.">Resumen.</h2>
+<p>Para abordar el análisis de datos de jugadores de la Bundesliga en R Studio, el estudio se centra en varios aspectos. Inicialmente, se plantea la hipótesis de que ciertas variables, como la edad, pueden influir en el precio máximo de los jugadores en el mercado. Se emplean diversos métodos estadísticos para explorar y validar esta hipótesis.</p>
+<p>El análisis comienza con la carga de bibliotecas necesarias y la importación de los datos del archivo CSV. Se examina la estructura y resumen de los datos para comprender mejor su composición y calidad. Se identifican y manejan los valores faltantes y duplicados en el conjunto de datos. Luego, se realiza un resumen detallado de cada columna, incluyendo el tipo de datos, el número de valores únicos, los valores nulos y duplicados.</p>
+<p>Posteriormente, se lleva a cabo un análisis exploratorio, donde se visualizan los recuentos de ciertas variables, como la edad y la nacionalidad, utilizando gráficos de barras y nubes de palabras. Además, se ajusta un modelo de regresión lineal para investigar la relación entre la edad y el precio máximo de los jugadores. El resumen del modelo muestra coeficientes significativos para la edad, lo que sugiere una influencia positiva en el precio máximo.</p>
+<p>En resumen, el análisis proporciona una comprensión profunda de los datos de los jugadores de la Bundesliga, explorando su composición, identificando patrones y relaciones importantes, y validando hipótesis de investigación clave, como la relación entre la edad y el precio máximo de los jugadores.</p>
+</section>
+<section id="introducción." class="level2">
+<h2 class="anchored" data-anchor-id="introducción.">Introducción.</h2>
+<p>En el ámbito del análisis de datos de jugadores de fútbol, especialmente en ligas prominentes como la Bundesliga, se ha investigado ampliamente la relación entre diversas variables, como la edad, la posición y el precio de mercado de los jugadores. Estudios previos han demostrado correlaciones significativas entre estos factores, lo que ha permitido a los clubes tomar decisiones informadas en términos de fichajes, contratos y estrategias de equipo.</p>
+<p>Sin embargo, este informe aporta novedades al presentar un análisis exhaustivo de datos específicos de la Bundesliga, utilizando herramientas estadísticas avanzadas en R Studio. Además de explorar la relación entre la edad y el precio máximo de los jugadores, se examinan otras variables relevantes, como la nacionalidad, la posición y la trayectoria en el club. La metodología utilizada incorpora técnicas de visualización y modelado de datos para ofrecer una comprensión más profunda de los factores que influyen en el valor de los jugadores en el mercado de transferencias. Además, este informe proporciona una descripción detallada de cada paso del proceso de análisis, lo que permite una replicación fácil y una comprensión clara de los hallazgos. En resumen, este informe contribuye al cuerpo existente de conocimientos al proporcionar una perspectiva única y detallada sobre el análisis de datos de jugadores de la Bundesliga, lo que puede ser de utilidad para clubes, analistas y aficionados interesados en entender mejor el mercado de fichajes y el rendimiento de los jugadores.</p>
+</section>
+<section id="exploración-inicial-de-datos." class="level2">
+<h2 class="anchored" data-anchor-id="exploración-inicial-de-datos.">Exploración inicial de datos.</h2>
+<ul>
+<li><strong>Carga de bibliotecas y datos:</strong> En la sección de carga de bibliotecas y datos, es común comenzar importando las bibliotecas necesarias para el análisis de datos. Luego, se procede a cargar los datos desde el archivo fuente. Aquí tienes un ejemplo de cómo podrías estructurar esta sección:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carga de bibliotecas necesarias</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)    <span class="co"># Para manipulación y visualización de datos</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)        <span class="co"># Para leer archivos CSV</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)      <span class="co"># Para crear gráficos</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer) <span class="co">#Paletas de colores en R.</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wordcloud)    <span class="co"># Para crear nubes de palabras</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rpart)        <span class="co"># Para modelado estadístico</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sentimentr)   <span class="co"># Para análisis de sentimientos</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)     <span class="co"># Para análisis de texto</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Carga de datos desde el archivo CSV</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"Data/bundesliga_player.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>New names:
+Rows: 515 Columns: 17
+── Column specification
+──────────────────────────────────────────────────────── Delimiter: "," chr
+(9): name, full_name, nationality, place_of_birth, position, foot, club... dbl
+(6): ...1, age, height, price, max_price, shirt_nr date (2): contract_expires,
+joined_club
+ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
+Specify the column types or set `show_col_types = FALSE` to quiet this message.
+• `` -&gt; `...1`</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificación de los primeros registros del dataframe</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 17
+   ...1 name   full_name   age height nationality place_of_birth price max_price
+  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;
+1     0 Manue… Manuel P…    37   1.93 Germany     Gelsenkirchen    7        45  
+2     1 Yann … &lt;NA&gt;         34   1.83 Switzerland Morges           5        13  
+3     2 Sven … &lt;NA&gt;         34   1.92 Germany     Schorndorf       0.9       6  
+4     3 Johan… &lt;NA&gt;         20   1.91 Germany     Schweinfurt      0.3       0.3
+5     4 Matth… &lt;NA&gt;         23   1.89 Netherlands Leiderdorp      75        75  
+6     5 Dayot… Dayotcha…    24   1.86 France&nbsp;&nbsp;Gu… Évreux          60        60  
+# ℹ 8 more variables: position &lt;chr&gt;, shirt_nr &lt;dbl&gt;, foot &lt;chr&gt;, club &lt;chr&gt;,
+#   contract_expires &lt;date&gt;, joined_club &lt;date&gt;, player_agent &lt;chr&gt;,
+#   outfitter &lt;chr&gt;</code></pre>
+</div>
+</div>
+<p>En este código, se están cargando las bibliotecas necesarias utilizando <strong><code>library()</code></strong>. Luego, se emplea la función <strong><code>read_csv()</code></strong> de la biblioteca <strong><code>readr</code></strong> para cargar los datos desde el archivo CSV “bundesliga_player.csv” ubicado en la carpeta “Data”. Finalmente, se utiliza <strong><code>head(df)</code></strong> para mostrar una vista previa de los primeros registros del dataframe <strong><code>df</code></strong>.</p>
+<p>Recuerda ajustar los nombres de las bibliotecas y el archivo CSV según corresponda a tu proyecto. Además, si el archivo CSV se encuentra en un directorio diferente, asegúrate de especificar la ruta correcta.</p>
+<ul>
+<li><strong>Estructura y resumen de los datos:</strong> En la sección de estructura y resumen de los datos, puedes proporcionar una visión general de cómo están estructurados los datos y resumir algunas estadísticas descriptivas clave. Aquí muestro cómo podrías desarrollar esta sección:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ver la estructura del dataframe</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>spc_tbl_ [515 × 17] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ ...1            : num [1:515] 0 1 2 3 4 5 6 7 8 9 ...
+ $ name            : chr [1:515] "Manuel Neuer" "Yann Sommer" "Sven Ulreich" "Johannes Schenk" ...
+ $ full_name       : chr [1:515] "Manuel Peter Neuer" NA NA NA ...
+ $ age             : num [1:515] 37 34 34 20 23 24 27 22 33 28 ...
+ $ height          : num [1:515] 1.93 1.83 1.92 1.91 1.89 1.86 1.84 1.85 1.8 1.82 ...
+ $ nationality     : chr [1:515] "Germany" "Switzerland" "Germany" "Germany" ...
+ $ place_of_birth  : chr [1:515] "Gelsenkirchen" "Morges" "Schorndorf" "Schweinfurt" ...
+ $ price           : num [1:515] 7 5 0.9 0.3 75 60 50 70 6 60 ...
+ $ max_price       : num [1:515] 45 13 6 0.3 75 60 70 80 25 70 ...
+ $ position        : chr [1:515] "Goalkeeper" "Goalkeeper" "Goalkeeper" "Goalkeeper" ...
+ $ shirt_nr        : num [1:515] 1 27 26 35 4 2 21 19 23 22 ...
+ $ foot            : chr [1:515] "right" "right" "right" NA ...
+ $ club            : chr [1:515] "Bayern Munich" "Bayern Munich" "Bayern Munich" "Bayern Munich" ...
+ $ contract_expires: Date[1:515], format: "2024-06-30" "2025-06-30" ...
+ $ joined_club     : Date[1:515], format: "2011-07-01" "2023-01-19" ...
+ $ player_agent    : chr [1:515] "PRO Profil GmbH" "Relatives" "BMS Sportconsulting ..." "11WINS" ...
+ $ outfitter       : chr [1:515] "adidas" "Puma" "adidas" NA ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   ...1 = col_double(),
+  ..   name = col_character(),
+  ..   full_name = col_character(),
+  ..   age = col_double(),
+  ..   height = col_double(),
+  ..   nationality = col_character(),
+  ..   place_of_birth = col_character(),
+  ..   price = col_double(),
+  ..   max_price = col_double(),
+  ..   position = col_character(),
+  ..   shirt_nr = col_double(),
+  ..   foot = col_character(),
+  ..   club = col_character(),
+  ..   contract_expires = col_date(format = ""),
+  ..   joined_club = col_date(format = ""),
+  ..   player_agent = col_character(),
+  ..   outfitter = col_character()
+  .. )
+ - attr(*, "problems")=&lt;externalptr&gt; </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen estadístico de las variables numéricas</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      ...1           name            full_name              age       
+ Min.   :  0.0   Length:515         Length:515         Min.   :17.00  
+ 1st Qu.:128.5   Class :character   Class :character   1st Qu.:22.00  
+ Median :257.0   Mode  :character   Mode  :character   Median :25.00  
+ Mean   :257.0                                         Mean   :25.68  
+ 3rd Qu.:385.5                                         3rd Qu.:29.00  
+ Max.   :514.0                                         Max.   :39.00  
+                                                                      
+     height      nationality        place_of_birth         price        
+ Min.   :1.680   Length:515         Length:515         Min.   :  0.025  
+ 1st Qu.:1.800   Class :character   Class :character   1st Qu.:  1.200  
+ Median :1.850   Mode  :character   Mode  :character   Median :  3.500  
+ Mean   :1.848                                         Mean   :  8.483  
+ 3rd Qu.:1.890                                         3rd Qu.:  9.000  
+ Max.   :2.000                                         Max.   :120.000  
+                                                       NA's   :5        
+   max_price        position            shirt_nr        foot          
+ Min.   :  0.10   Length:515         Min.   : 1.0   Length:515        
+ 1st Qu.:  2.50   Class :character   1st Qu.: 9.0   Class :character  
+ Median :  7.00   Mode  :character   Median :20.0   Mode  :character  
+ Mean   : 13.51                      Mean   :19.8                     
+ 3rd Qu.: 16.75                      3rd Qu.:29.0                     
+ Max.   :150.00                      Max.   :49.0                     
+ NA's   :5                                                            
+     club           contract_expires      joined_club        
+ Length:515         Min.   :2023-06-30   Min.   :2009-07-01  
+ Class :character   1st Qu.:2024-06-30   1st Qu.:2019-07-01  
+ Mode  :character   Median :2025-06-30   Median :2021-07-05  
+                    Mean   :2025-03-17   Mean   :2020-08-21  
+                    3rd Qu.:2026-06-30   3rd Qu.:2022-07-01  
+                    Max.   :2028-06-30   Max.   :2023-01-31  
+                    NA's   :34                               
+ player_agent        outfitter        
+ Length:515         Length:515        
+ Class :character   Class :character  
+ Mode  :character   Mode  :character  
+                                      
+                                      
+                                      
+                                      </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen de la cantidad de valores faltantes por columna</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>na_count <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">is.na</span>(df))</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(na_count)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            ...1             name        full_name              age 
+               0                0              286                0 
+          height      nationality   place_of_birth            price 
+               0                0                5                5 
+       max_price         position         shirt_nr             foot 
+               5                0                0                9 
+            club contract_expires      joined_club     player_agent 
+               0               34                0               27 
+       outfitter 
+             322 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen de las variables categóricas (frecuencia de valores únicos)</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#summary_categorical &lt;- lapply(df[, sapply(df, is.character)], table)</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#print(summary_categorical)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>En este fragmento de código, <strong>str(df)</strong> muestra la estructura del dataframe, lo que proporciona información sobre el tipo de datos y la cantidad de observaciones en cada columna. Luego, <strong>summary(df)</strong> presenta un resumen estadístico de las variables numéricas, incluyendo la media, mediana, mínimo, máximo, etc.</p>
+<p>Después, na_count calcula la cantidad de valores faltantes por columna y <strong>print(na_count)</strong> imprime estos recuentos. Finalmente, <strong>summary_categorical</strong> utiliza <strong>lapply()</strong> para calcular la frecuencia de valores únicos para las variables categóricas, lo que permite tener una idea de la distribución de estas variables en el conjunto de datos.</p>
+<ul>
+<li><p><strong>Identificación y manejo de valores faltantes y duplicados:</strong> En la sección de identificación y manejo de valores faltantes y duplicados, puedes realizar las siguientes acciones.</p>
+<ul>
+<li><p><strong>Indetificación y manejo de valores faltantes</strong>:</p>
+<ol type="1">
+<li>Calcular la cantidad de valores faltantes por columna.</li>
+<li>Decidir si eliminar las filas o columnas con valores faltantes, o imputar valores para llenar los faltantes.</li>
+<li>Explicar la justificación detrás de la decisión tomada (por ejemplo, si se eliminaron filas/columnas, proporcionar una razón por qué, si se imputaron valores, explicar el método de imputación utilizado).</li>
+</ol></li>
+</ul></li>
+</ul>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

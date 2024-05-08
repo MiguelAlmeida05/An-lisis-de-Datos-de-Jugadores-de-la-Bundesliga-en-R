@@ -1,12 +1,14 @@
 ---
 title: "Análisis de Datos de Jugadores de la Bundesliga en R."
-date: 2022-05-04
-format:
-  html:
+date: "2022-05-04"
+output:
+  html_document:
     theme: cosmo
-  pdf:
-    documentclass: report
-  docx: default
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+  word_document: default
 ---
 
 ## Resumen.
@@ -25,4 +27,62 @@ En el ámbito del análisis de datos de jugadores de fútbol, especialmente en l
 
 Sin embargo, este informe aporta novedades al presentar un análisis exhaustivo de datos específicos de la Bundesliga, utilizando herramientas estadísticas avanzadas en R Studio. Además de explorar la relación entre la edad y el precio máximo de los jugadores, se examinan otras variables relevantes, como la nacionalidad, la posición y la trayectoria en el club. La metodología utilizada incorpora técnicas de visualización y modelado de datos para ofrecer una comprensión más profunda de los factores que influyen en el valor de los jugadores en el mercado de transferencias. Además, este informe proporciona una descripción detallada de cada paso del proceso de análisis, lo que permite una replicación fácil y una comprensión clara de los hallazgos. En resumen, este informe contribuye al cuerpo existente de conocimientos al proporcionar una perspectiva única y detallada sobre el análisis de datos de jugadores de la Bundesliga, lo que puede ser de utilidad para clubes, analistas y aficionados interesados en entender mejor el mercado de fichajes y el rendimiento de los jugadores.
 
+## Exploración inicial de datos.
 
+-   **Carga de bibliotecas y datos:** En la sección de carga de bibliotecas y datos, es común comenzar importando las bibliotecas necesarias para el análisis de datos. Luego, se procede a cargar los datos desde el archivo fuente. Aquí tienes un ejemplo de cómo podrías estructurar esta sección:
+
+```{r}
+#| label: Carga de bibliotecas y datos
+
+# Carga de bibliotecas necesarias
+library(tidyverse)    # Para manipulación y visualización de datos
+library(readr)        # Para leer archivos CSV
+library(ggplot2)      # Para crear gráficos
+library(RColorBrewer) #Paletas de colores en R.
+library(wordcloud)    # Para crear nubes de palabras
+library(rpart)        # Para modelado estadístico
+library(sentimentr)   # Para análisis de sentimientos
+library(tidytext)     # Para análisis de texto
+
+# Carga de datos desde el archivo CSV
+df <- read_csv("Data/bundesliga_player.csv")
+
+# Verificación de los primeros registros del dataframe
+head(df)
+```
+
+En este código, se están cargando las bibliotecas necesarias utilizando **`library()`**. Luego, se emplea la función **`read_csv()`** de la biblioteca **`readr`** para cargar los datos desde el archivo CSV "bundesliga_player.csv" ubicado en la carpeta "Data". Finalmente, se utiliza **`head(df)`** para mostrar una vista previa de los primeros registros del dataframe **`df`**.
+
+Recuerda ajustar los nombres de las bibliotecas y el archivo CSV según corresponda a tu proyecto. Además, si el archivo CSV se encuentra en un directorio diferente, asegúrate de especificar la ruta correcta.
+
+-   **Estructura y resumen de los datos:** En la sección de estructura y resumen de los datos, puedes proporcionar una visión general de cómo están estructurados los datos y resumir algunas estadísticas descriptivas clave. Aquí muestro cómo podrías desarrollar esta sección:
+
+```{r}
+#| label: Estructura y resumen de los datos
+
+# Ver la estructura del dataframe
+str(df)
+
+# Resumen estadístico de las variables numéricas
+summary(df)
+
+# Resumen de la cantidad de valores faltantes por columna
+na_count <- colSums(is.na(df))
+print(na_count)
+
+# Resumen de las variables categóricas (frecuencia de valores únicos)
+#summary_categorical <- lapply(df[, sapply(df, is.character)], table)
+#print(summary_categorical)
+```
+
+En este fragmento de código, **str(df)** muestra la estructura del dataframe, lo que proporciona información sobre el tipo de datos y la cantidad de observaciones en cada columna. Luego, **summary(df)** presenta un resumen estadístico de las variables numéricas, incluyendo la media, mediana, mínimo, máximo, etc.
+
+Después, na_count calcula la cantidad de valores faltantes por columna y **print(na_count)** imprime estos recuentos. Finalmente, **summary_categorical** utiliza **lapply()** para calcular la frecuencia de valores únicos para las variables categóricas, lo que permite tener una idea de la distribución de estas variables en el conjunto de datos.
+
+-   **Identificación y manejo de valores faltantes y duplicados:** En la sección de identificación y manejo de valores faltantes y duplicados, puedes realizar las siguientes acciones.
+
+    -   **Indetificación y manejo de valores faltantes**:
+
+        1.  Calcular la cantidad de valores faltantes por columna.
+        2.  Decidir si eliminar las filas o columnas con valores faltantes, o imputar valores para llenar los faltantes.
+        3.  Explicar la justificación detrás de la decisión tomada (por ejemplo, si se eliminaron filas/columnas, proporcionar una razón por qué, si se imputaron valores, explicar el método de imputación utilizado).
