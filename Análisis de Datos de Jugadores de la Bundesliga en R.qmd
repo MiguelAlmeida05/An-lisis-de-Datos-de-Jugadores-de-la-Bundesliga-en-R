@@ -53,7 +53,7 @@ head(df)
 
 En este código, se están cargando las bibliotecas necesarias utilizando **`library()`**. Luego, se emplea la función **`read_csv()`** de la biblioteca **`readr`** para cargar los datos desde el archivo CSV "bundesliga_player.csv" ubicado en la carpeta "Data". Finalmente, se utiliza **`head(df)`** para mostrar una vista previa de los primeros registros del dataframe **`df`**.
 
-Recuerda ajustar los nombres de las bibliotecas y el archivo CSV según corresponda a tu proyecto. Además, si el archivo CSV se encuentra en un directorio diferente, asegúrate de especificar la ruta correcta.
+Observa ajustar los nombres de las bibliotecas y el archivo CSV según corresponda a tu proyecto. Además, si el archivo CSV se encuentra en un directorio diferente, asegúrate de especificar la ruta correcta.
 
 -   **Estructura y resumen de los datos:** En la sección de estructura y resumen de los datos, puedes proporcionar una visión general de cómo están estructurados los datos y resumir algunas estadísticas descriptivas clave. Aquí muestro cómo podrías desarrollar esta sección:
 
@@ -77,7 +77,9 @@ print(na_count)
 
 En este fragmento de código, **str(df)** muestra la estructura del dataframe, lo que proporciona información sobre el tipo de datos y la cantidad de observaciones en cada columna. Luego, **summary(df)** presenta un resumen estadístico de las variables numéricas, incluyendo la media, mediana, mínimo, máximo, etc.
 
-Después, na_count calcula la cantidad de valores faltantes por columna y **print(na_count)** imprime estos recuentos. Finalmente, **summary_categorical** utiliza **lapply()** para calcular la frecuencia de valores únicos para las variables categóricas, lo que permite tener una idea de la distribución de estas variables en el conjunto de datos.
+Después, na_count calcula la cantidad de valores faltantes por columna y **print(na_count)** imprime estos recuentos. Finalmente, **summary_categorical** utiliza **lapply()** para calcular la frecuencia de valores únicos para las variables categóricas, lo que permite tener una idea de la distribución de estas variables en el conjunto de
+
+Esta sección puede variar dependiendo de la naturaleza de tus datos y las estadísticas que consideres relevantes para tu análisis. Ajusta el código según tus necesidades específicas.
 
 -   **Identificación y manejo de valores faltantes y duplicados:** En la sección de identificación y manejo de valores faltantes y duplicados, puedes realizar las siguientes acciones.
 
@@ -86,3 +88,276 @@ Después, na_count calcula la cantidad de valores faltantes por columna y **prin
         1.  Calcular la cantidad de valores faltantes por columna.
         2.  Decidir si eliminar las filas o columnas con valores faltantes, o imputar valores para llenar los faltantes.
         3.  Explicar la justificación detrás de la decisión tomada (por ejemplo, si se eliminaron filas/columnas, proporcionar una razón por qué, si se imputaron valores, explicar el método de imputación utilizado).
+
+    -   **Indetificación y manejo de valores duplicados**:
+
+        1.  Identificar y contar los valores duplicados en el conjunto de datos.
+        2.  Decidir si eliminar los valores duplicados o mantenerlos según el contexto del análisis.
+        3.  Explicar la razón detrás de la decisión tomada (por ejemplo, si se eliminaron los duplicados, proporcionar una razón por qué).
+
+Aquí te muestro cómo podrías estructurar esta sección:
+
+```{r}
+#| label: Indentificación de valores faltantes y duplicados
+
+# Identificación de valores faltantes
+na_count <- colSums(is.na(df))
+print("Cantidad de valores faltantes por columna:")
+print(na_count)
+
+# Manejo de valores faltantes
+# Ejemplo de eliminación de filas con valores faltantes
+df_sin_na <- na.omit(df)
+print("Dimensiones del dataframe después de eliminar filas con valores faltantes:")
+dim(df_sin_na)
+
+# Identificación de valores duplicados
+duplicated_count <- sum(duplicated(df))
+print("Cantidad de valores duplicados en el dataframe:")
+print(duplicated_count)
+
+# Manejo de valores duplicados
+# Ejemplo de eliminación de valores duplicados
+df_sin_duplicados <- unique(df)
+print("Dimensiones del dataframe después de eliminar valores duplicados:")
+dim(df_sin_duplicados)
+```
+
+En este código, primero se identifican los valores faltantes con **colSums(is.na(df))** y se cuentan por columna. Luego, se decide eliminar las filas con valores faltantes utilizando **na.omit(df)** y se muestra la dimensión del dataframe resultante.
+
+Después, se identifican los valores duplicados con **sum(duplicated(df))** y se cuenta la cantidad total. Finalmente, se eliminan los valores duplicados con **unique(df)** y se muestra la dimensión del dataframe resultante.
+
+Recuerdemos ajustar el manejo de valores faltantes y duplicados según las necesidades específicas de tu análisis y el contexto de tus datos.
+
+-   **Resumen detallado de cada columna**: En la sección de resumen detallado de cada columna, puedes proporcionar información específica sobre cada variable en tu conjunto de datos. Esto puede incluir.
+    1.  Nombre de la columna.
+    2.  Tipo de Datos.
+    3.  Descripción de la variable y su significado.
+    4.  Estadística descriptiva relevantes, como media, mediana, desviación estándar, mínimo, máximo, etc. (Para variables cuantitativas).
+    5.  Distribución de valores únicos y frecuencia de ocurrencia para variables categóricas.
+    6.  Visualizaciones relecantes, como histogramas para variables cuantitativas y gráficos de barras para variables cualitativas, para proporcionar una comprensión visual de la distribución de los datos.
+    7.  Cualquier transformación o procesamiento previo realizado en la variable.
+
+Aquí te muestro cómo podrías estructurar esta sección:
+
+```{r}
+#| label: Resumen detallado de cada columna
+
+# Columna: 'name'
+# Tipo: Character
+# Descripción: Nombre del jugador.
+# Distribución de valores únicos y frecuencia de ocurrencia
+table(df$name)
+
+# Columna: 'age'
+# Tipo: Numeric
+# Descripción: Edad del jugador.
+# Estadísticas descriptivas
+summary(df$age)
+# Visualización
+hist(df$age, main = "Distribución de Edades", xlab = "Edad")
+
+# Columna: 'height'
+# Tipo: Numeric
+# Descripción: Altura del jugador.
+# Estadísticas descriptivas
+summary(df$height)
+# Visualización
+hist(df$height, main = "Distribución de Alturas", xlab = "Altura")
+
+# Columna: 'nationality'
+# Tipo: Character
+# Descripción: Nacionalidad del jugador.
+# Distribución de valores únicos y frecuencia de ocurrencia
+table(df$nationality)
+
+# Columna: 'club'
+# Tipo: Character
+# Descripción: Club al que pertenece el jugador.
+# Distribución de valores únicos y frecuencia de ocurrencia
+table(df$club)
+
+# Columna: 'position'
+# Tipo: Character
+# Descripción: Posición del jugador en el campo.
+# Distribución de valores únicos y frecuencia de ocurrencia
+table(df$position)
+```
+
+**Hacer el análisis de los resultados no te olvides mmvrg**
+
+En este código, se proporciona un resumen detallado para cada columna del dataframe. Para cada columna, se describe el nombre, tipo de datos y significado de la variable. Luego, se presentan estadísticas descriptivas y, cuando es apropiado, se incluyen visualizaciones para comprender mejor la distribución de los datos.
+
+Adaptar este resumen a las características específicas de tus datos y las necesidades de tu análisis.
+
+## Visualización inicial.
+
+-   **Visualización de recuentos de variables clave:** En la sección de visualización de recuentos de variables clave, puedes proporcionar gráficos que muestren la distribución de variables clave en tu conjunto de datos. Esto puede incluir variables como edad, nacionalidad, posición del jugador, etc. Aquí te muestro algunas ideas de visualizaciones que podrías incluir.
+
+    1.  Histograma de edad: Muestra la distribución de los jugadores.
+
+    2.  Gráfico de barras de nacionalidad: Muestra la cantidad de jugadores por país.
+
+    3.  Gráfico de barras de posición: Muestra la cantidad de jugadores en cada posición en el campo (por ejemplo; delantero, centrocampista, defensa, portero, etc).
+
+    4.  Gráfico de barras de club: Muestra la cantidad de jugadores en cada club.
+
+    5.  Gráfico de pastel de nacionalidad: Proporciona una representación visual de la proporción de jugadores por país.
+
+    6.  Diagrama de dispersión de edad & altura: Muestra la relación entre la edad y la altura de los jugadores.
+
+    7.  Gráfico de barras aplicadas de posición por nacionalidad: Muestra la distribución de posiciones por país.
+
+```{r}
+#| label: Visualización de recuentos de variable clave
+
+# Histograma de edad
+hist(df$age, main = "Distribución de Edades", xlab = "Edad", ylab = "Frecuencia")
+
+# Definir el umbral de relevancia para las nacionalidades
+umbral_nacionalidades <- 10
+# Calcular la tabla de frecuencia de nacionalidades
+nationality_table <- table(df$nationality)
+# Filtrar las nacionalidades más relevantes
+relevant_nationalities <- nationality_table[nationality_table >= umbral_nacionalidades]
+# Graficar el gráfico de barras
+barplot(relevant_nationalities, main = "Distribución de Nacionalidades Relevantes", xlab = "Nacionalidad", ylab = "Cantidad de Jugadores")
+
+# Gráfico de barras de posición
+barplot(table(df$position), main = "Distribución de Posiciones", xlab = "Posición", ylab = "Cantidad de Jugadores")
+
+# Definir el umbral de relevancia para los clubes
+umbral_clubes <- 10
+# Calcular la tabla de frecuencia de clubes
+club_table <- table(df$club)
+# Filtrar los clubes más relevantes
+relevant_clubs <- club_table[club_table >= umbral_clubes]
+# Graficar el gráfico de barras
+barplot(relevant_clubs, main = "Distribución de Clubes Relevantes", xlab = "Club", ylab = "Cantidad de Jugadores", las = 2)
+
+# Definir el umbral de relevancia
+umbral <- 10
+# Calcular la tabla de frecuencia de nacionalidades
+nationality_table <- table(df$nationality)
+# Filtrar los países más relevantes
+relevant_countries <- nationality_table[nationality_table >= umbral]
+# Graficar el gráfico de pastel
+pie(relevant_countries, main = "Proporción de Nacionalidades Relevantes")
+
+# Diagrama de dispersión de edad vs. altura
+plot(df$age, df$height, main = "Diagrama de Dispersión: Edad vs. Altura", xlab = "Edad", ylab = "Altura", pch = 16)
+
+# Calcular la tabla de frecuencia de posición por nacionalidad
+position_by_nationality <- table(df$position, df$nationality)
+# Calcular la suma de jugadores por posición y filtrar las posiciones relevantes
+posiciones_relevantes <- rowSums(position_by_nationality) >= 10
+position_by_nationality <- position_by_nationality[posiciones_relevantes, ]
+# Graficar el gráfico de barras apiladas
+barplot(position_by_nationality, 
+        main = "Distribución de Posiciones Relevantes por Nacionalidad", 
+        xlab = "Nacionalidad", 
+        ylab = "Cantidad de Jugadores", 
+        legend = rownames(position_by_nationality))
+```
+
+Estas visualizaciones proporcionan una comprensión visual de la distribución de variables clave en tu conjunto de datos, lo que puede ayudar a identificar patrones o tendencias importantes. Es necesario, ajustar las visualizaciones según las necesidades específicas de tu análisis y los datos disponibles.
+
+-   **Creación de gráficos de barras y nubes de palabras:** En la sección de creación de gráficos de barras y nubes de palabras, puedes presentar visualizaciones adicionales que resalten aspectos específicos de tus datos, como la distribución de ciertas variables categóricas o la frecuencia de ciertos términos en texto. Aquí hay algunas ideas sobre qué incluir en esta sección.
+
+    1.  Gráfico de barras de las diez nacionalidades más comunes: Muestra a las diez nacionalidades más frecuentes en tu conjunto de datos.
+
+    2.  Gráfico de barras de las diez posiciones más comunes: Muestra las diez posiciones más frecuentes entre los jugadores.
+
+    3.  Nube de palabras de los clubes: Muestra los nombres de los clubes más frecuentes en forma de nube de palabras, donde el tamaño de cada palabra es proporcional a su frecuencia.
+
+    4.  Nube de palabras de los agentes de los jugadores: Muestra a los nombres de los agentes de los jugadores más frecuentes en forma de nube de palabras.
+
+```{r}
+#| label: Creación de gráficos de barras y nubes de palabras
+
+# Gráfico de barras de las diez nacionalidades más comunes
+top_nationalities <- names(sort(table(df$nationality), decreasing = TRUE))[1:10]
+barplot(table(df$nationality)[top_nationalities], main = "Las diez nacionalidades más comunes", xlab = "Nacionalidad", ylab = "Cantidad de Jugadores")
+
+# Gráfico de barras de las diez posiciones más comunes
+top_positions <- names(sort(table(df$position), decreasing = TRUE))[1:10]
+barplot(table(df$position)[top_positions], main = "Las diez posiciones más comunes", xlab = "Posición", ylab = "Cantidad de Jugadores")
+
+# Nube de palabras de los clubes
+library(wordcloud)
+wordcloud(names(table(df$club)), freq = table(df$club), max.words = 50, min.freq = 3, random.order = FALSE, colors = brewer.pal(8, "Dark2"),
+          main = "Nube de Palabras de Clubes")
+
+# Nube de palabras de los agentes de los jugadores
+wordcloud(names(table(df$player_agent)), freq = table(df$player_agent), max.words = 50, min.freq = 3, random.order = FALSE, colors = brewer.pal(8, "Dark2"),
+          main = "Nube de Palabras de Agentes de Jugadores")
+```
+
+Estas visualizaciones proporcionan una representación gráfica de la distribución de ciertas variables clave en tu conjunto de datos y pueden ayudar a identificar patrones o tendencias importantes. Nos aseguramos de ajustar las visualizaciones según las características específicas de tus datos y los objetivos de tu análisis.
+
+## Limpieza y preparación de datos.
+
+-   **Eliminación de columnas innecesarias:** En la sección de eliminación de columnas innecesarias, puedes mostrar cómo identificar y eliminar aquellas columnas que no son relevantes para tu análisis o que contienen principalmente valores nulos o duplicados. Aquí hay algunas acciones que podrías realizar.
+    1.  Identificar columanas irrelevantes: Revisa cada columna para determinar si aporta valor al análisis o si contine información redundante o irrelevante.
+
+    2.  Eliminar columnas con valores nulos: Si una columna contiene una gran cantidad de valores nulos que no se pueden imputar de manera significativa, es posible que desees eliminarla.
+
+    3.  Eliminar columnas duplicadas: Si hay columnas que contienen la misma información o están altamente correlacionadas con otras, puedes eliminarlas para evitar la redundancia.
+
+    4.  Eliminar columnas que no se utilizarán en el análisis posterior: Si ciertas columnas no serán relevantes para los análisis posteriores, es mejor eliminarlas para simplificar el conjunto de datos.
+
+```{r}
+#| label: Eliminación de columnas innecesarias
+
+# Identificar columnas irrelevantes
+irrelevant_columns <- c("...1", "full_name", "place_of_birth", "shirt_nr", "foot", "contract_expires", "joined_club", "outfitter")
+
+# Eliminar columnas con valores nulos
+df_clean <- df[, !names(df) %in% irrelevant_columns]
+
+# Eliminar filas duplicadas
+df_clean <- df_clean[!duplicated(df_clean), ]
+```
+
+Después de realizar estas acciones, puedes mostrar el resumen actualizado del conjunto de datos para confirmar que las columnas innecesarias han sido eliminadas.
+
+```{r}
+#| label: Resumen del conjunto de datos actualizado
+
+# Mostrar resumen del conjunto de datos actualizado
+summary(df_clean)
+```
+
+-   **Tratamiento de valores atípicos (si es necesario):** En la sección de tratamiento de valores atípicos, puedes abordar cómo identificar y manejar los valores atípicos que pueden distorsionar tus análisis o modelos. Aquí hay algunas acciones que podrías considerar.
+    1.  Identificar valores atípicos: Utiliza métodos estadísticos, como el rango intercuartílico (IQR), los límites de Grubbs, o visualizaciones, como diagramas de caja (boxplots) o gráficos de dispersión, para identificar valores que se desvían significativamente de la distribución de los datos.
+
+    2.  Evaluar la naturaleza de los valores atípicos: Determina si los valores atípicos son errores de medición, datos válidos pero poco comunes, o valores extremos que deben ser tratados de manera diferente.
+
+    3.  Decidir cómo manejar los valores atípicos: Puedes optar por elimanar los valores atípicos si son errores de medición, transformarlos si afectan la normalidad de los datos, o tratarlos como datos válidos pero poco comunes si son relevantes para tu análisis.
+
+    4.  Implementar el tratamiento de valores atípicos: Aplica las acciones decididas, ya sea eliminando, transformando o tratando los valores atípicos según sea necesario.
+
+```{r}
+#| label: Tratamiento de valores atípicos
+
+# Identificar valores atípicos utilizando el método del rango intercuartílico (IQR)
+Q1 <- quantile(df_clean$max_price, 0.25)
+Q3 <- quantile(df_clean$max_price, 0.75)
+IQR <- Q3 - Q1
+lower_limit <- Q1 - 1.5 * IQR
+upper_limit <- Q3 + 1.5 * IQR
+
+# Identificar valores atípicos
+outliers <- df_clean$max_price[df_clean$max_price < lower_limit | df_clean$max_price > upper_limit]
+
+# Evaluar la naturaleza de los valores atípicos
+# Por ejemplo, podrías examinar si los valores atípicos corresponden a errores de medición o son datos válidos pero poco comunes.
+
+# Decidir cómo manejar los valores atípicos
+# Dependiendo de la naturaleza de los valores atípicos, podrías optar por eliminarlos, transformarlos o tratarlos como datos válidos pero poco comunes.
+
+# Implementar el tratamiento de valores atípicos
+# Por ejemplo, podrías optar por eliminar los valores atípicos si se consideran errores de medición.
+df_clean <- df_clean[!df_clean$max_price %in% outliers, ]
+
+```
