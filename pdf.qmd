@@ -3,13 +3,13 @@ title: "Análisis de Datos de Jugadores de la Bundesliga en R."
 date: "2022-05-04"
 author: "Miguel Almeida"
 institute: "Portoviejo, Universidad Técnica de Manabí"
-format:
-  html:
-    theme: cerulean
-  pdf:
-    documentclass: report
-  docx: default
+output:
+  pdf_document:
+    latex_engine: pdflatex
+  word_document: default
 ---
+
+# Análisis de Datos de Jugadores de la Bundesliga en R
 
 ## **Resumen.**
 
@@ -71,8 +71,8 @@ na_count <- colSums(is.na(df))
 print(na_count)
 
 # Resumen de las variables categóricas (frecuencia de valores únicos)
-summary_categorical <- lapply(df[, sapply(df, is.character)], table)
-print(summary_categorical)
+#summary_categorical <- lapply(df[, sapply(df, is.character)], table)
+#print(summary_categorical)
 ```
 
 En este fragmento de código, **str(df)** muestra la estructura del dataframe, lo que proporciona información sobre el tipo de datos y la cantidad de observaciones en cada columna. Luego, **summary(df)** presenta un resumen estadístico de las variables numéricas, incluyendo la media, mediana, mínimo, máximo, etc.
@@ -95,7 +95,7 @@ Esta sección puede variar dependiendo de la naturaleza de tus datos y las estad
         2.  Decidir si eliminar los valores duplicados o mantenerlos según el contexto del análisis.
         3.  Explicar la razón detrás de la decisión tomada (por ejemplo, si se eliminaron los duplicados, proporcionar una razón por qué).
 
-Aquí muestro cómo podemos estructurar esta sección:
+Aquí te muestro cómo podrías estructurar esta sección:
 
 ```{r}
 #| label: Indentificación de valores faltantes y duplicados
@@ -358,6 +358,8 @@ predictions
 ```
 
 Las predicciones proporcionan estimaciones del precio máximo de transferencia para las edades especificadas, lo que permite una mejor comprensión de la relación entre la edad y el precio máximo de los jugadores en la Bundesliga.
+
+## **Resumen de resultados:**
 
 ## **Conclusión:**
 

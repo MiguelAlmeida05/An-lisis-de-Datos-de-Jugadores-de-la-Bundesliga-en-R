@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Miguel Almeida">
 <meta name="dcterms.date" content="2022-05-04">
 
 <title>Análisis de Datos de Jugadores de la Bundesliga en R.</title>
@@ -72,10 +73,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="fullcontent">
+<body>
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Análisis de Datos de Jugadores de la Bundesliga en R.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="Análisis de Datos de Jugadores de la Bundesliga en R.docx"><i class="bi bi-file-word"></i>MS Word</a></li></ul></div></div>
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
@@ -84,10 +86,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 
 
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Miguel Almeida </p>
+  </div>
+    <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Portoviejo, Universidad Técnica de Manabí
+          </p>
+      </div>
+    </div>
 
 <div class="quarto-title-meta">
 
-    
+      
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
@@ -102,19 +117,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <section id="resumen." class="level2">
-<h2 class="anchored" data-anchor-id="resumen.">Resumen.</h2>
+<h2 class="anchored" data-anchor-id="resumen."><strong>Resumen.</strong></h2>
 <p>Para abordar el análisis de datos de jugadores de la Bundesliga en R Studio, el estudio se centra en varios aspectos. Inicialmente, se plantea la hipótesis de que ciertas variables, como la edad, pueden influir en el precio máximo de los jugadores en el mercado. Se emplean diversos métodos estadísticos para explorar y validar esta hipótesis.</p>
 <p>El análisis comienza con la carga de bibliotecas necesarias y la importación de los datos del archivo CSV. Se examina la estructura y resumen de los datos para comprender mejor su composición y calidad. Se identifican y manejan los valores faltantes y duplicados en el conjunto de datos. Luego, se realiza un resumen detallado de cada columna, incluyendo el tipo de datos, el número de valores únicos, los valores nulos y duplicados.</p>
 <p>Posteriormente, se lleva a cabo un análisis exploratorio, donde se visualizan los recuentos de ciertas variables, como la edad y la nacionalidad, utilizando gráficos de barras y nubes de palabras. Además, se ajusta un modelo de regresión lineal para investigar la relación entre la edad y el precio máximo de los jugadores. El resumen del modelo muestra coeficientes significativos para la edad, lo que sugiere una influencia positiva en el precio máximo.</p>
 <p>En resumen, el análisis proporciona una comprensión profunda de los datos de los jugadores de la Bundesliga, explorando su composición, identificando patrones y relaciones importantes, y validando hipótesis de investigación clave, como la relación entre la edad y el precio máximo de los jugadores.</p>
 </section>
 <section id="introducción." class="level2">
-<h2 class="anchored" data-anchor-id="introducción.">Introducción.</h2>
+<h2 class="anchored" data-anchor-id="introducción."><strong>Introducción.</strong></h2>
 <p>En el ámbito del análisis de datos de jugadores de fútbol, especialmente en ligas prominentes como la Bundesliga, se ha investigado ampliamente la relación entre diversas variables, como la edad, la posición y el precio de mercado de los jugadores. Estudios previos han demostrado correlaciones significativas entre estos factores, lo que ha permitido a los clubes tomar decisiones informadas en términos de fichajes, contratos y estrategias de equipo.</p>
 <p>Sin embargo, este informe aporta novedades al presentar un análisis exhaustivo de datos específicos de la Bundesliga, utilizando herramientas estadísticas avanzadas en R Studio. Además de explorar la relación entre la edad y el precio máximo de los jugadores, se examinan otras variables relevantes, como la nacionalidad, la posición y la trayectoria en el club. La metodología utilizada incorpora técnicas de visualización y modelado de datos para ofrecer una comprensión más profunda de los factores que influyen en el valor de los jugadores en el mercado de transferencias. Además, este informe proporciona una descripción detallada de cada paso del proceso de análisis, lo que permite una replicación fácil y una comprensión clara de los hallazgos. En resumen, este informe contribuye al cuerpo existente de conocimientos al proporcionar una perspectiva única y detallada sobre el análisis de datos de jugadores de la Bundesliga, lo que puede ser de utilidad para clubes, analistas y aficionados interesados en entender mejor el mercado de fichajes y el rendimiento de los jugadores.</p>
 </section>
 <section id="exploración-inicial-de-datos." class="level2">
-<h2 class="anchored" data-anchor-id="exploración-inicial-de-datos.">Exploración inicial de datos.</h2>
+<h2 class="anchored" data-anchor-id="exploración-inicial-de-datos."><strong>Exploración inicial de datos.</strong></h2>
 <ul>
 <li><strong>Carga de bibliotecas y datos:</strong> En la sección de carga de bibliotecas y datos, es común comenzar importando las bibliotecas necesarias para el análisis de datos. Luego, se procede a cargar los datos desde el archivo fuente. Aquí tienes un ejemplo de cómo podrías estructurar esta sección:</li>
 </ul>
@@ -281,8 +296,1562 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
              322 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen de las variables categóricas (frecuencia de valores únicos)</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#summary_categorical &lt;- lapply(df[, sapply(df, is.character)], table)</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#print(summary_categorical)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>summary_categorical <span class="ot">&lt;-</span> <span class="fu">lapply</span>(df[, <span class="fu">sapply</span>(df, is.character)], table)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summary_categorical)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$name
+
+            Aarón Martín            Aaron Zehnter             Abdou Diallo 
+                       1                        1                        1 
+        Abdoulaye Kamara              Adam Hlozek            Agustín Rogel 
+                       1                        1                        1 
+          Aïssa Laïdouni            Alassane Plea                Alex Kral 
+                       1                        1                        1 
+          Alexander Hack          Alexander Meyer       Alexander Schwolow 
+                       1                        1                        1 
+            Almamy Touré                Alou Kuol          Alphonso Davies 
+                       1                        1                        1 
+          Amadou Haidara               Amine Adli              Amos Pieper 
+                       1                        1                        1 
+          András Schäfer               André Hahn              André Silva 
+                       1                        1                        1 
+    Andreas Hanche-Olsen          Andrej Kramaric             Andrey Lunev 
+                       1                        1                        1 
+                Angeliño           Angelo Stiller            Ansgar Knauff 
+                       1                        1                        1 
+            Anthony Caci             Anthony Jung          Anthony Losilla 
+                       1                        1                        1 
+         Anthony Modeste              Anton Stach    Antonios Papadopoulos 
+                       1                        1                        1 
+         Antonis Aidonis       Arijon Ibrahimovic              Arne Engels 
+                       1                        1                        1 
+              Arne Maier           Atakan Karazor             Aurélio Buta 
+                       1                        1                        1 
+             Ayman Azhil             Aymen Barkok           Bartol Franjic 
+                       1                        1                        1 
+       Benjamin Henrichs          Benjamin Leneis          Benjamin Pavard 
+                       1                        1                        1 
+         Benjamin Uphoff            Benno Schmitz               Borna Sosa 
+                       1                        1                        1 
+              Bouna Sarr             Brajan Gruda              Caden Clark 
+                       1                        1                        1 
+      Callum Hudson-Odoi           Cédric Brunner            Chidera Ejuke 
+                       1                        1                        1 
+           Chris Führich           Christian Groß         Christian Günter 
+                       1                        1                        1 
+   Christoph Baumgartner         Christoph Kramer  Christopher Antwi-Adjei 
+                       1                        1                        1 
+        Christopher Lenz       Christopher Nkunku      Christopher Trimmel 
+                       1                        1                        1 
+               Conor Noß          Cristian Gamboa            Daichi Kamada 
+                       1                        1                        1 
+             Daley Blind         Daley Sinkgraven         Dan-Axel Zagadou 
+                       1                        1                        1 
+               Dani Olmo       Daniel-Kofi Kyereh         Daniel Caligiuri 
+                       1                        1                        1 
+            Daniel Klein           Danilho Doekhi            Danilo Soares 
+                       1                        1                        1 
+          Danny da Costa              Danny Latza             David Colina 
+                       1                        1                        1 
+              David Raum              Davie Selke          Dayot Upamecano 
+                       1                        1                        1 
+          Dejan Ljubicic          Delano Burgzorg        Denis Huseinbasic 
+                       1                        1                        1 
+           Dennis Geiger          Derry Scherhant              Diant Ramaj 
+                       1                        1                        1 
+          Dikeni Salifou        Dimitrios Limnios              Diogo Leite 
+                       1                        1                        1 
+              Dion Beljo              Djibril Sow           Dodi Lukébakio 
+                       1                        1                        1 
+        Dominick Drexler             Dominik Kohr       Dominik Szoboszlai 
+                       1                        1                        1 
+        Dominique Heintz            Donyell Malen                     Dudu 
+                       1                        1                        1 
+       Dzenan Pejcinovic             Éder Balanta      Edimilson Fernandes 
+                       1                        1                        1 
+          Edmond Tapsoba         Eduardo Quaresma        Elias Bakatukanda 
+                       1                        1                        1 
+           Ellyes Skhiri          Elvis Rexhbecaj            Emil Forsberg 
+                       1                        1                        1 
+                Emre Can            Eniss Shabani              Enzo Millot 
+                       1                        1                        1 
+             Eren Dinkci            Erhan Masovic              Eric Martel 
+                       1                        1                        1 
+Eric Maxim Choupo-Moting        Ermedin Demirovic           Ermin Bicakcic 
+                       1                        1                        1 
+             Evan Ndicka        Exequiel Palacios           Fabian Bredlow 
+                       1                        1                        1 
+         Fabio Chiarodia            Faride Alidou                Felix Agu 
+                       1                        1                        1 
+            Felix Nmecha           Felix Passlack           Felix Uduokhai 
+                       1                        1                        1 
+          Filip Uremovic              Finn Dahmen          Finn Ole Becker 
+                       1                        1                        1 
+          Fisnik Asllani            Florian Dietz            Florian Kainz 
+                       1                        1                        1 
+          Florian Müller          Florian Neuhaus    Florian Niederlechner 
+                       1                        1                        1 
+          Florian Schock            Florian Wirtz          Frederik Rönnow 
+                       1                        1                        1 
+          Fredrik Jensen          Genki Haraguchi            Georg Strauch 
+                       1                        1                        1 
+         Gerrit Holtmann                 Gil Dias           Giovanni Reyna 
+                       1                        1                        1 
+           Göktan Gürpüz             Gregor Kobel           Grischa Prömel 
+                       1                        1                        1 
+             Hannes Wolf       Henning Matriciani               Hiroki Ito 
+                       1                        1                        1 
+          Hrvoje Smolcic                     Iago             Ibrahim Maza 
+                       1                        1                        1 
+          Ibrahima Cissé              Ihlas Bebou               Ilia Gruev 
+                       1                        1                        1 
+           Irvin Cardona              Ivan Ordets              Ivan Sunjic 
+                       1                        1                        1 
+          Jacek Goralski       Jacob Bruun Larsen             Jae-sung Lee 
+                       1                        1                        1 
+              Jakob Busk           Jakub Kaminski            Jamal Musiala 
+                       1                        1                        1 
+     Jamie Bynoe-Gittens           Jamie Leweling           Jan Olschowsky 
+                       1                        1                        1 
+            Jan Schröder            Jan Thielmann            Janik Haberer 
+                       1                        1                        1 
+          Janis Blaswich        Jean-Paul Boëtius         Jean Manuel Mbom 
+                       1                        1                        1 
+      Jeffrey Gouweleeuw               Jens Grahl               Jens Stage 
+                       1                        1                        1 
+             Jere Uronen         Jeremie Frimpong        Jérôme Roussillon 
+                       1                        1                        1 
+        Jesper Lindström           Jessic Ngankam            Jiri Pavlenka 
+                       1                        1                        1 
+            João Cancelo               Joe Scally          Johannes Schenk 
+                       1                        1                        1 
+     John Anthony Brooks             Jonas Hector            Jonas Hofmann 
+                       1                        1                        1 
+          Jonas Nickisch              Jonas Omlin               Jonas Wind 
+                       1                        1                        1 
+       Jonathan Burkardt          Jonathan Schmid             Jonathan Tah 
+                       1                        1                        1 
+            Jonjoe Kenny                   Jordan          Jordi Osei-Tutu 
+                       1                        1                        1 
+          Josha Vagnoman               Joshua Eze           Joshua Kimmich 
+                       1                        1                        1 
+        Joshua Schwirten          Josip Juranovic           Josip Stanisic 
+                       1                        1                        1 
+          Josko Gvardiol        Josuha Guilavogui          Juan José Perea 
+                       1                        1                        1 
+         Jude Bellingham    Julian Baumgartlinger            Julian Brandt 
+                       1                        1                        1 
+           Julian Chabot      Julian Eitschberger            Julian Roloff 
+                       1                        1                        1 
+          Julian Ryerson             Julian Weigl        Julien Duranville 
+                       1                        1                        1 
+      Junior Dina Ebimbe               Justin Che          Justin Heekeren 
+                       1                        1                        1 
+           Karim Adeyemi          Karim Bellarabi            Karim Onisiwo 
+                       1                        1                        1 
+          Kasper Dolberg             Kelian Nsona            Kelvin Yeboah 
+                       1                        1                        1 
+           Kenan Karaman          Kenneth Schmidt           Kerem Demirbay 
+                       1                        1                        1 
+     Keven Schlotterbeck     Kevin-Prince Boateng           Kevin Akpoguma 
+                       1                        1                        1 
+           Kevin Behrens              Kevin Kampl            Kevin Möhwald 
+                       1                        1                        1 
+           Kevin Paredes             Kevin Stöger              Kevin Trapp 
+                       1                        1                        1 
+              Kevin Vogt           Kilian Fischer        Kiliann Sildillia 
+                       1                        1                        1 
+        Kimberly Ezekwem           Kingsley Coman       Kingsley Schindler 
+                       1                        1                        1 
+              Ko Itakura            Koen Casteels            Konrad Laimer 
+                       1                        1                        1 
+ Konstantinos Mavropanos  Konstantinos Stafylidis        Kristian Pedersen 
+                       1                        1                        1 
+         Kristijan Jakic              Lars Stindl               Lasse Rieß 
+                       1                        1                        1 
+           Laurin Ulrich         Leandro Barreiro             Lee Buchanan 
+                       1                        1                        1 
+           Lennart Grill               Leo Greiml            Leon Goretzka 
+                       1                        1                        1 
+    Leonardo Bittencourt               Leroy Sané           Levin Öztunali 
+                       1                        1                        1 
+           Lilian Egloff             Linton Maina               Louis Lord 
+                       1                        1                        1 
+             Luca Kilian                Luca Netz            Luca Pfeiffer 
+                       1                        1                        1 
+            Luca Philipp            Luca Unbehaun         Luca Waldschmidt 
+                       1                        1                        1 
+            Lucas Alario          Lucas Hernández              Lucas Höler 
+                       1                        1                        1 
+           Lucas Tousart          Ludovic Ajorque           Lukas Hradecky 
+                       1                        1                        1 
+       Lukas Klostermann             Lukas Kübler             Lukas Nmecha 
+                       1                        1                        1 
+           Lukas Ullrich            Mads Pedersen           Mahmoud Dahoud 
+                       1                        1                        1 
+           Makoto Hasebe         Mamadou Doucouré                Manu Koné 
+                       1                        1                        1 
+            Manuel Gulde             Manuel Neuer           Manuel Riemann 
+                       1                        1                        1 
+       Marc Oliver Kempf       Marcel Halstenberg             Marcel Lotka 
+                       1                        1                        1 
+            Marcel Wenig          Marcin Kaminski             Marco Friedl 
+                       1                        1                        1 
+              Marco Reus            Marco Richter        Marcus Ingvartsen 
+                       1                        1                        1 
+           Marcus Thuram              Mario Götze            Marius Bülter 
+                       1                        1                        1 
+             Marius Wolf             Mark Flekken                 Mark Uth 
+                       1                        1                        1 
+         Marko Johansson          Marlon Mustapha            Márton Dárdai 
+                       1                        1                        1 
+          Marvin Ducksch         Marvin Friedrich      Marvin Plattenhardt 
+                       1                        1                        1 
+          Marvin Schwäbe        Mateu Morey Bauzà           Mathias Olesen 
+                       1                        1                        1 
+              Mathys Tel             Mats Hummels          Matthias Ginter 
+                       1                        1                        1 
+        Matthias Köbbing         Matthijs de Ligt         Mattias Svanberg 
+                       1                        1                        1 
+         Maxence Lacroix            Maxim Leitsch        Maximilian Arnold 
+                       1                        1                        1 
+        Maximilian Bauer     Maximilian Eggestein   Maximilian Mittelstädt 
+                       1                        1                        1 
+      Maximilian Philipp        Maximilian Schmid             Maya Yoshida 
+                       1                        1                        1 
+             Mehdi Loune             Mehmet Aydin           Mergim Berisha 
+                       1                        1                        1 
+             Merlin Röhl               Mert Kömür            Michael Esser 
+                       1                        1                        1 
+            Michael Frey      Michael Gregoritsch           Michael Langer 
+                       1                        1                        1 
+        Michael Zetterer         Micky van de Ven           Milos Pantovic 
+                       1                        1                        1 
+         Milos Veljkovic             Mio Backhaus           Mitchel Bakker 
+                       1                        1                        1 
+         Mitchell Weiser          Mohamed Simakan           Mohammed Tolba 
+                       1                        1                        1 
+      Moritz Broschinski              Moritz Jenz           Morten Thorsby 
+                       1                        1                        1 
+            Moussa Diaby           Muhammed Damar             Munas Dabbur 
+                       1                        1                        1 
+             Nacho Ferri             Nadiem Amiri              Nahuel Noll 
+                       1                        1                        1 
+          Nathan Ngoumou          Nathanaël Mbuku            Nelson Weiper 
+                       1                        1                        1 
+         Niclas Füllkrug              Nico Elvedi       Nico Schlotterbeck 
+                       1                        1                        1 
+             Nico Schulz            Nicolas Cozza           Nicolas Höfler 
+                       1                        1                        1 
+           Niklas Dorsch           Niklas Klinger              Niklas Lomb 
+                       1                        1                        1 
+          Niklas Schmidt             Niklas Stark              Niklas Süle 
+                       1                        1                        1 
+            Niklas Tauer          Niko Gießelmann             Nikola Soldo 
+                       1                        1                        1 
+          Nikolas Nartey            Nils Petersen             Noah Atubolu 
+                       1                        1                        1 
+Noah Joel Sarenren Bazee              Noah Mbamba           Noah Weißhaupt 
+                       1                        1                        1 
+       Noussair Mazraoui         Odilon Kossounou           Oliver Baumann 
+                       1                        1                        1 
+      Oliver Christensen            Omar Marmoush               Ömer Beyaz 
+                       1                        1                        1 
+            Örjan Nyland             Oscar Fraulo              Oskar Preil 
+                       1                        1                        1 
+              Ozan Kabak           Pascal Stenzel         Patrick Herrmann 
+                       1                        1                        1 
+       Patrick Osterhage            Patrick Pentz           Patrick Wimmer 
+                       1                        1                        1 
+           Patrik Schick               Paul Grave             Paul Jaeckel 
+                       1                        1                        1 
+             Paul Seguin              Paul Wanner             Paulo Otávio 
+                       1                        1                        1 
+            Pavao Pervan          Pavel Kaderabek          Paxten Aaronson 
+                       1                        1                        1 
+           Péter Gulácsi            Peter Pekarik          Philipp Förster 
+                       1                        1                        1 
+         Philipp Hofmann         Philipp Lienhart              Philipp Max 
+                       1                        1                        1 
+          Philipp Pentke           Philipp Schulz          Philipp Schulze 
+                       1                        1                        1 
+          Piero Hincapié             Pierre Kunde             Rafael Borré 
+                       1                        1                        1 
+         Rafal Gikiewicz            Ralf Fährmann          Ramy Bensebaini 
+                       1                        1                        1 
+       Randal Kolo Muani             Rani Khedira        Raphaël Guerreiro 
+                       1                        1                        1 
+            Reece Oxford             Renato Veiga               Ridle Baku 
+                       1                        1                        1 
+            Rijad Smajic               Ritsu Doan           Robert Andrich 
+                       1                        1                        1 
+            Robert Gumny              Robert Skov            Robert Wagner 
+                       1                        1                        1 
+            Robin Knoche            Robin Zentner          Rodrigo Zalazar 
+                       1                        1                        1 
+           Roland Sallai            Romano Schmid             Rubén Vargas 
+                       1                        1                        1 
+           Rune Jarstein         Ryan Gravenberch               Sadio Mané 
+                       1                        1                        1 
+             Saidy Janko              Salih Özcan              Sanoussy Ba 
+                       1                        1                        1 
+           Sardar Azmoun           Sargis Adamyan       Sebastiaan Bornauw 
+                       1                        1                        1 
+     Sebastian Andersson         Sebastian Polter           Sebastian Rode 
+                       1                        1                        1 
+          Sebastian Rudy         Sébastien Haller        Sepp van den Berg 
+                       1                        1                        1 
+            Serge Gnabry          Serhou Guirassy          Sheraldo Becker 
+                       1                        1                        1 
+                   Silas            Silvan Widmer         Silvère Ganvoula 
+                       1                        1                        1 
+            Simon Simoni            Simon Terodde              Simon Walde 
+                       1                        1                        1 
+            Simon Zoller          Soichiro Kozuki       Soumaïla Coulibaly 
+                       1                        1                        1 
+           Stanley Nsoki              Stefan Bell            Stefan Lainer 
+                       1                        1                        1 
+          Steffen Tigges           Stevan Jovetic              Suat Serdar 
+                       1                        1                        1 
+             Sven Michel             Sven Ulreich             Takuma Asano 
+                       1                        1                        1 
+        Tanguy Coulibaly           Thomas Delaney        Thomas Kastanaras 
+                       1                        1                        1 
+          Thomas Meunier            Thomas Müller           Thomas Ouwejan 
+                       1                        1                        1 
+             Tiago Tomás             Tim Lemperle          Tim Maciejewski 
+                       1                        1                        1 
+              Tim Skarke           Timo Baumgartl                Timo Horn 
+                       1                        1                        1 
+             Timo Hübers            Timo Schlieck              Timo Werner 
+                       1                        1                        1 
+  Timothée Kolodziejczak         Timothy Chandler      Timothy Fosu-Mensah 
+                       1                        1                        1 
+             Tjark Ernst              Tobias Mohr            Tobias Sippel 
+                       1                        1                        1 
+           Tobias Strobl            Tolga Cigerci              Tom Bischof 
+                       1                        1                        1 
+               Tom Krauß                Tom Rothe             Tomas Koubek 
+                       1                        1                        1 
+          Tony Jantschke                     Tuta             Umut Tohumcu 
+                       1                        1                        1 
+   Vasilios Lampropoulos           Vincenzo Grifo           Waldemar Anton 
+                       1                        1                        1 
+             Wataru Endo           Wilfried Kanga              Willi Orbán 
+                       1                        1                        1 
+         Woo-yeong Jeong           Xaver Schlager              Yann Sommer 
+                       1                        1                        1 
+        Yannick Gerhardt            Yannik Keitel        Youssoufa Moukoko 
+                       1                        1                        1 
+          Yussuf Poulsen   Yvandro Borges Sanches 
+                       1                        1 
+
+$full_name
+
+                         Aarón Martín Caricol 
+                                            1 
+                          Abdou-Lakhad Diallo 
+                                            1 
+                                  Adam Hložek 
+                                            1 
+              Agustín Maximiliano Rogel Paita 
+                                            1 
+                         Aïssa Bilal Laïdouni 
+                                            1 
+                      Alassane Alexandre Plea 
+                                            1 
+                                    Alex Král 
+                                            1 
+                Alexander Niklas Meyer-Schade 
+                                            1 
+                        Alphonso Boyle Davies 
+                                            1 
+                   André Miguel Valente Silva 
+                                            1 
+              Andreas Schjølberg Hanche-Olsen 
+                                            1 
+                              Andrej Kramarić 
+                                            1 
+                    Anthony Mbu Agogo Modeste 
+                                            1 
+         Arijon Ibrahimović / Arijon Ibrahimi 
+                                            1 
+                 Aurélio Gabriel Ulineia Buta 
+                                            1 
+                               Bartol Franjić 
+                                            1 
+                              Bote Nzuzi Baku 
+                                            1 
+                      Caden Christopher Clark 
+                                            1 
+                     Callum James Hudson-Odoi 
+                                            1 
+                      Christopher Alan Nkunku 
+                                            1 
+                 Cristian Esteban Gamboa Luna 
+                                            1 
+                               Cтeвaн Joвeтић 
+                                            1 
+                         Daniel Olmo Carvajal 
+                                            1 
+                      Danilho Raimundo Doekhi 
+                                            1 
+                        Danilo Teodoro Soares 
+                                            1 
+                        Danny Vieira da Costa 
+                                            1 
+                                 David Čolina 
+                                            1 
+              Dayotchanculle Oswald Upamecano 
+                                            1 
+                            Denis Huseinbašić 
+                                            1 
+                       Derry Lionel Scherhant 
+                                            1 
+                         Dikeni-Rafid Salifou 
+                                            1 
+            Diogo Filipe Monteiro Pinto Leite 
+                                            1 
+                             Dion Drena Beljo 
+                                            1 
+                      Dodi Lukébakio Ngandoli 
+                                            1 
+                            Dženan Pejčinović 
+                                            1 
+                  Éder Fabián Álvarez Balanta 
+                                            1 
+                  Edimilson Fernandes Ribeiro 
+                                            1 
+                        Edmond Fayçal Tapsoba 
+                                            1 
+Eduardo Filipe Quaresma Vieira Coimbra Simões 
+                                            1 
+                   Elias-Geoffrey Bakatukanda 
+                                            1 
+                              Elvis Rexhbeçaj 
+                                            1 
+                          Emil Peter Forsberg 
+                                            1 
+                             Eren Sami Dinkçi 
+                                            1 
+                      Éric Junior Dina Ebimbe 
+                                            1 
+                     Eric Maxim Choupo-Moting 
+                                            1 
+                            Ermedin Demirović 
+                                            1 
+                               Ermin Bičakčić 
+                                            1 
+                  Exequiel Alejandro Palacios 
+                                            1 
+                     Fabio Cristian Chiarodia 
+                                            1 
+                               Filip Uremović 
+                                            1 
+                          Finn Gilbert Dahmen 
+                                            1 
+                    Florian Christian Neuhaus 
+                                            1 
+                        Florian Richard Wirtz 
+                                            1 
+                         Frederik Riis Rønnow 
+                                            1 
+                        Gian-Luca Waldschmidt 
+                                            1 
+                             Gil Bastião Dias 
+                                            1 
+                     Giovanni Alejandro Reyna 
+                                            1 
+                         Hannes Lennart Grill 
+                                            1 
+                             Hannes Tarn Wolf 
+                                            1 
+                          Hans Fredrik Jensen 
+                                            1 
+                               Hrvoje Smolčić 
+                                            1 
+                          Ignacio Ferri Julià 
+                                            1 
+                                  Ivan Šunjić 
+                                            1 
+                               Jacek Góralski 
+                                            1 
+                            Jakob Busk Jensen 
+                                            1 
+                               Jakub Kamiński 
+                                            1 
+                 Jamie Jermaine Bynoe-Gittens 
+                                            1 
+                     Jan Alex Wilson Schröder 
+                                            1 
+                         Jan Jakob Olschowsky 
+                                            1 
+                            Jan Uwe Thielmann 
+                                            1 
+                      Janis Jonathan Blaswich 
+                                            1 
+                    Jean-Paul Patrick Boëtius 
+                                            1 
+                         Jens Dalsgaard Stage 
+                                            1 
+                           Jere Juhani Uronen 
+                                            1 
+                     Jeremie Agyekum Frimpong 
+                                            1 
+                      Jesper Grænge Lindstrøm 
+                                            1 
+                        Jessic Gaïtan Ngankam 
+                                            1 
+                                Jiří Pavlenka 
+                                            1 
+                    João Pedro Cavaco Cancelo 
+                                            1 
+                             Jonas Older Wind 
+                                            1 
+                            Jonathan Glao Tah 
+                                            1 
+                    Jonathan Michael Burkardt 
+                                            1 
+              Jordi Martin Emmanuel Osei-Tutu 
+                                            1 
+                        Joseph Michael Scally 
+                                            1 
+              Josha Mamadou Karaboue Vagnoman 
+                                            1 
+                             Joshua Chima Eze 
+                                            1 
+                        Joshua Walter Kimmich 
+                                            1 
+                              Josip Juranović 
+                                            1 
+                               Josip Stanišić 
+                                            1 
+                               Joško Gvardiol 
+                                            1 
+                      Juan José Perea Mendoza 
+                                            1 
+               Jude Victor William Bellingham 
+                                            1 
+                 Julian Jeffrey Gaston Chabot 
+                                            1 
+                             Justin Isiah Che 
+                                            1 
+                          Karim-David Adeyemi 
+                                            1 
+                     Kasper Dolberg Rasmussen 
+                                            1 
+                         Kelian Nsona Wa Saka 
+                                            1 
+                       Kelvin Kwarteng Yeboah 
+                                            1 
+                      Kevin Alexander Paredes 
+                                            1 
+                        Kevin Christian Trapp 
+                                            1 
+                   Kevin John Ufuoma Akpoguma 
+                                            1 
+                       Kiliann Eric Sildillia 
+                                            1 
+           Kimberly Chiwetalu Akwaeze Ezekwem 
+                                            1 
+                        Kingsley Junior Coman 
+                                            1 
+                            Kouadio Manu Koné 
+                                            1 
+                    Kristian Majdahl Pedersen 
+                                            1 
+                              Kristijan Jakić 
+                                            1 
+                              Lars Edi Stindl 
+                                            1 
+                              Lasse Finn Rieß 
+                                            1 
+                     Leandro Barreiro Martins 
+                                            1 
+                           Lee David Buchanan 
+                                            1 
+                      Leon Christoph Goretzka 
+                                            1 
+          Leonardo Jesus Loureiro Bittencourt 
+                                            1 
+                              Leroy Aziz Sané 
+                                            1 
+                          Levin Mete Öztunali 
+                                            1 
+                           Luca Jannis Kilian 
+                                            1 
+          Lucas François Bernard Hernández Pi 
+                                            1 
+                         Lucas Nicolás Alario 
+                                            1 
+                               Lukáš Hrádecký 
+                                            1 
+                     Lukas Manuel Klostermann 
+                                            1 
+                       Lukas Okechukwu Nmecha 
+                                            1 
+              Mads Giersing Valentin Pedersen 
+                                            1 
+                           Manuel Peter Neuer 
+                                            1 
+                      Manuel Riemann-Lorenzen 
+                                            1 
+                         Marcel Laurenz Lotka 
+                                            1 
+                              Marcin Kamiński 
+                                            1 
+                    Marcus Højriis Ingvartsen 
+                                            1 
+                   Marcus Lilian Thuram-Ulien 
+                                            1 
+                           Mark-Alexander Uth 
+                                            1 
+                   Martin Sebastian Andersson 
+                                            1 
+                      Mateu Jaume Morey Bauzà 
+                                            1 
+                         Mathias Flaga Olesen 
+                                            1 
+                          Mats Julian Hummels 
+                                            1 
+                        Matthias Lukas Ginter 
+                                            1 
+                        Mattias Olof Svanberg 
+                                            1 
+                    Maximilian Marcus Philipp 
+                                            1 
+                             Mehmet Can Aydin 
+                                            1 
+                       Mitchell-Elijah Weiser 
+                                            1 
+                Mohameth Djibril Ibrahima Sow 
+                                            1 
+                        Muhammed Mehmet Damar 
+                                            1 
+                          Nahuel Nicolas Noll 
+                                            1 
+                       Nathan Ngoumou Minpole 
+                                            1 
+                  Nelson Felix Patrick Weiper 
+                                            1 
+                    Nico Cedric Schlotterbeck 
+                                            1 
+                   Nicolas Louis Marcel Cozza 
+                                            1 
+                           Niklas Uwe Schmidt 
+                                            1 
+                          Niklas&nbsp;Bernd Dorsch 
+                                            1 
+                     Nikolas Terkelsen Nartey 
+                                            1 
+                       Noah Raphael Weißhaupt 
+                                            1 
+                           Noah&nbsp;Mbamba-Muanda 
+                                            1 
+                            Obite Evan Ndicka 
+                                            1 
+                     Odilon Kossounou Kouakou 
+                                            1 
+                          Ohis Felix Uduokhai 
+                                            1 
+                             Ömer Faruk Beyaz 
+                                            1 
+                        Ørjan Håskjold Nyland 
+                                            1 
+                           Oscar Luigi Fraulo 
+                                            1 
+                          Ozan Muhammed Kabak 
+                                            1 
+                              Pavel Kadeřábek 
+                                            1 
+                         Paxten Reid Aaronson 
+                                            1 
+                                Peter Pekarík 
+                                            1 
+                  Piero Martín Hincapié Reyna 
+                                            1 
+                          Pierre Kunde Malong 
+                                            1 
+                    Rafael Santos Borré Maury 
+                                            1 
+                              Rafał Gikiewicz 
+                                            1 
+                      Ralf Sebastian Fährmann 
+                                            1 
+               Raphaël Adelino José Guerreiro 
+                                            1 
+                            Reece Joel Oxford 
+                                            1 
+                           Renato Palma Veiga 
+                                            1 
+                             Robert Faxe Skov 
+                                            1 
+                     Rodrigo Zalazar Martínez 
+                                            1 
+               Rubén Estephan Vargas Martínez 
+                                            1 
+                      Rune Almenning Jarstein 
+                                            1 
+                        Ryan Jiro Gravenberch 
+                                            1 
+                Sébastien Romain Teddy Haller 
+                                            1 
+                           Serge David Gnabry 
+                                            1 
+                       Serhou Yadaly Guirassy 
+                                            1 
+                    Silvère Ganvoula M'boussy 
+                                            1 
+                          Simon Martin Zoller 
+                                            1 
+                         Stanley Pierre Nsoki 
+                                            1 
+                      Suliman-Marlon Mustapha 
+                                            1 
+              Tan-Kenneth Jerico Leka-Schmidt 
+                                            1 
+                        Thomas Joseph Delaney 
+                                            1 
+                Tiago Barreiros de Melo Tomás 
+                                            1 
+                         Tim Luis Maciejewski 
+                                            1 
+                            Timo Bernd Hübers 
+                                            1 
+             Timothée Christian Kolodziejczak 
+                                            1 
+                    Timothy Evans Fosu-Mensah 
+                                            1 
+                                Tolga Ciğerci 
+                                            1 
+                          Tom Alexander Rothe 
+                                            1 
+                                 Tomáš Koubek 
+                                            1 
+                           Umut Deger Tohumcu 
+                                            1 
+                           Vilmos Tamás Orbán 
+                                            1 
+                           Wilfried Kanga Aka 
+                                            1 
+                        Yussuf Yurary Poulsen 
+                                            1 
+                         Αντώνης Παπαδόπουλος 
+                                            1 
+                       Βασίλειος Λαμπρόπουλος 
+                                            1 
+                            Δημήτριος Λημνιός 
+                                            1 
+                             Θωμάς Καστανάρας 
+                                            1 
+                      Κωνσταντίνος Μαυροπάνος 
+                                            1 
+                      Κωνσταντίνος Σταφυλίδης 
+                                            1 
+                                Ерхан Машовић 
+                                            1 
+                             Илия Илиев Груев 
+                                            1 
+                      Лунёв Андрей Евгеньевич 
+                                            1 
+                               Милош Вељковић 
+                                            1 
+                               Милош Пантовић 
+                                            1 
+                      Ордець Іван Миколайович 
+                                            1 
+          Рипцов-Антон Владимир Александрович 
+                                            1 
+                               Սարգիս Ադամյան 
+                                            1 
+                                  מואנס דאבור 
+                                            1 
+                                  إلياس صخيري 
+                                            1 
+                                   أيمن بركوك 
+                                            1 
+                               رامي بن سبعيني 
+                                            1 
+                                  سردار آزمون 
+                                            1 
+     عمر مرموش | Omar Khaled Mohamed Marmoush 
+                                            1 
+                                  كريم&nbsp;بلعربي 
+                                            1 
+                                    محمد طلبه 
+                                            1 
+                                  نصير مزراوي 
+                                            1 
+                                       이재성 
+                                            1 
+                                       정우영 
+                                            1 
+                                  上月 壮一郎 
+                                            1 
+                                    伊藤 洋輝 
+                                            1 
+                                    原口 元気 
+                                            1 
+                                    吉田 麻也 
+                                            1 
+                                      堂安 律 
+                                            1 
+                                      板倉 滉 
+                                            1 
+                                    浅野 拓磨 
+                                            1 
+                                      遠藤 航 
+                                            1 
+                                    鎌田 大地 
+                                            1 
+                                    長谷部 誠 
+                                            1 
+
+$nationality
+
+                          Albania                           Algeria 
+                                1                                 1 
+                        Argentina                  Argentina&nbsp;&nbsp;Italy 
+                                1                                 1 
+                          Armenia         Australia&nbsp;&nbsp;Southern Sudan 
+                                1                                 1 
+                          Austria                           Belgium 
+                               21                                 6 
+                Belgium&nbsp;&nbsp;DR Congo       Bosnia-Herzegovina&nbsp;&nbsp;Germany 
+                                1                                 3 
+                           Brazil                 Bulgaria&nbsp;&nbsp;Germany 
+                                4                                 1 
+                     Burkina Faso                          Cameroon 
+                                1                                 1 
+                Cameroon&nbsp;&nbsp;Germany                   Canada&nbsp;&nbsp;Liberia 
+                                1                                 1 
+                         Colombia                             Congo 
+                                3                                 1 
+                       Costa Rica                     Cote d'Ivoire 
+                                1                                 1 
+            Cote d'Ivoire&nbsp;&nbsp;France                           Croatia 
+                                2                                11 
+                 Croatia&nbsp;&nbsp;Germany                    Czech Republic 
+                                2                                 5 
+         Czech Republic&nbsp;&nbsp;Slovakia                           Denmark 
+                                1                                12 
+                   Denmark&nbsp;&nbsp;Ghana                    Denmark&nbsp;&nbsp;Italy 
+                                1                                 1 
+                Denmark&nbsp;&nbsp;Tanzania            Denmark&nbsp;&nbsp;United States 
+                                1                                 1 
+                         DR Congo                           Ecuador 
+                                1                                 1 
+                    Egypt&nbsp;&nbsp;Canada                           England 
+                                1                                 3 
+                England&nbsp;&nbsp;Barbados                    England&nbsp;&nbsp;Ghana 
+                                1                                 2 
+                 England&nbsp;&nbsp;Jamaica                           Finland 
+                                1                                 2 
+                Finland&nbsp;&nbsp;Slovakia                            France 
+                                1                                 5 
+                 France&nbsp;&nbsp;Cameroon             France&nbsp;&nbsp;Cote d'Ivoire 
+                                3                                 3 
+                 France&nbsp;&nbsp;DR Congo                France&nbsp;&nbsp;Guadeloupe 
+                                5                                 5 
+                   France&nbsp;&nbsp;Guinea             France&nbsp;&nbsp;Guinea-Bissau 
+                                3                                 1 
+                    France&nbsp;&nbsp;Italy                      France&nbsp;&nbsp;Mali 
+                                1                                 3 
+                    France&nbsp;&nbsp;Malta                France&nbsp;&nbsp;Martinique 
+                                1                                 2 
+                  France&nbsp;&nbsp;Morocco                    France&nbsp;&nbsp;Poland 
+                                1                                 1 
+                  France&nbsp;&nbsp;Réunion                   France&nbsp;&nbsp;Senegal 
+                                1                                 1 
+                    France&nbsp;&nbsp;Spain                           Germany 
+                                1                               178 
+             Germany&nbsp;&nbsp;Afghanistan                  Germany&nbsp;&nbsp;Albania 
+                                1                                 2 
+                 Germany&nbsp;&nbsp;Algeria                   Germany&nbsp;&nbsp;Angola 
+                                2                                 1 
+                 Germany&nbsp;&nbsp;Austria       Germany&nbsp;&nbsp;Bosnia-Herzegovina 
+                                1                                 1 
+                  Germany&nbsp;&nbsp;Brazil                 Germany&nbsp;&nbsp;Cameroon 
+                                2                                 3 
+           Germany&nbsp;&nbsp;Cote d'Ivoire                 Germany&nbsp;&nbsp;DR Congo 
+                                2                                 2 
+                   Germany&nbsp;&nbsp;Egypt                  Germany&nbsp;&nbsp;England 
+                                1                                 4 
+                  Germany&nbsp;&nbsp;France                    Germany&nbsp;&nbsp;Ghana 
+                                2                                 3 
+                  Germany&nbsp;&nbsp;Greece                  Germany&nbsp;&nbsp;Hungary 
+                                4                                 1 
+                   Germany&nbsp;&nbsp;Kenya                   Germany&nbsp;&nbsp;Kosovo 
+                                1                                 5 
+              Germany&nbsp;&nbsp;Montenegro                  Germany&nbsp;&nbsp;Morocco 
+                                1                                 2 
+                 Germany&nbsp;&nbsp;Nigeria                   Germany&nbsp;&nbsp;Poland 
+                                7                                 1 
+                 Germany&nbsp;&nbsp;Senegal                    Germany&nbsp;&nbsp;Spain 
+                                1                                 3 
+                   Germany&nbsp;&nbsp;Syria                     Germany&nbsp;&nbsp;Togo 
+                                1                                 1 
+                 Germany&nbsp;&nbsp;Tunisia                   Germany&nbsp;&nbsp;Turkey 
+                                1                                 7 
+                   Ghana&nbsp;&nbsp;Germany                            Greece 
+                                4                                 3 
+                   Greece&nbsp;&nbsp;Brazil                Guadeloupe&nbsp;&nbsp;France 
+                                1                                 1 
+                   Guinea&nbsp;&nbsp;France                           Hungary 
+                                1                                 4 
+                 Hungary&nbsp;&nbsp;Germany                              Iran 
+                                1                                 1 
+                 Ireland&nbsp;&nbsp;Germany                            Israel 
+                                1                                 1 
+                            Italy                    Italy&nbsp;&nbsp;Germany 
+                                1                                 2 
+                     Italy&nbsp;&nbsp;Ghana                             Japan 
+                                1                                10 
+                     Korea, South            Luxembourg&nbsp;&nbsp;Cape Verde 
+                                2                                 1 
+              Luxembourg&nbsp;&nbsp;Denmark              Luxembourg&nbsp;&nbsp;Portugal 
+                                1                                 1 
+                             Mali                      Mali&nbsp;&nbsp;France 
+                                1                                 2 
+               Montenegro&nbsp;&nbsp;Serbia                  Morocco&nbsp;&nbsp;Germany 
+                                1                                 2 
+             Morocco&nbsp;&nbsp;Netherlands                       Netherlands 
+                                1                                 9 
+               Netherlands&nbsp;&nbsp;Ghana             Netherlands&nbsp;&nbsp;Suriname 
+                                2                                 5 
+                          Nigeria                  Nigeria&nbsp;&nbsp;Germany 
+                                1                                 1 
+                           Norway              Philippines&nbsp;&nbsp;Germany 
+                                5                                 1 
+                           Poland                          Portugal 
+                                5                                 7 
+                 Portugal&nbsp;&nbsp;Angola                  Portugal&nbsp;&nbsp;France 
+                                1                                 1 
+                           Russia                           Senegal 
+                                1                                 1 
+                  Senegal&nbsp;&nbsp;France                            Serbia 
+                                2                                 1 
+                  Serbia&nbsp;&nbsp;Germany               Serbia&nbsp;&nbsp;Switzerland 
+                                1                                 1 
+                         Slovakia                          Slovenia 
+                                1                                 1 
+                            Spain             Suriname&nbsp;&nbsp;Netherlands 
+                                5                                 1 
+                           Sweden                    Sweden&nbsp;&nbsp;Serbia 
+                                3                                 1 
+                      Switzerland   Switzerland&nbsp;&nbsp;Dominican Republic 
+                                7                                 1 
+            Switzerland&nbsp;&nbsp;Portugal              Switzerland&nbsp;&nbsp;Senegal 
+                                1                                 1 
+          The Gambia&nbsp;&nbsp;Switzerland                     Togo&nbsp;&nbsp;Germany 
+                                1                                 2 
+                  Tunisia&nbsp;&nbsp;France                            Turkey 
+                                2                                 2 
+                  Turkey&nbsp;&nbsp;Germany                           Ukraine 
+                                5                                 1 
+                    United States United States&nbsp;&nbsp;Dominican Republic 
+                                3                                 1 
+            United States&nbsp;&nbsp;France            United States&nbsp;&nbsp;Germany 
+                                1                                 3 
+          United States&nbsp;&nbsp;Portugal                    Uruguay&nbsp;&nbsp;Italy 
+                                1                                 1 
+                   Uruguay&nbsp;&nbsp;Spain 
+                                1 
+
+$place_of_birth
+
+                    Aachen                      Aarau 
+                         1                          1 
+                   Abidjan                      Accra 
+                         1                          2 
+                     Achim                Adligenswil 
+                         1                          1 
+                  Albacete              Aledjo Kadara 
+                         1                          1 
+                   Alkmaar                    Almalyk 
+                         1                          1 
+          Amagasaki, Hyogo                  Amsterdam 
+                         1                          6 
+                     Amûdê‎                  Andernach 
+                         1                          1 
+                 Ängelholm                     Ankara 
+                         1                          1 
+         Annaberg-Buchholz                      Arles 
+                         1                          1 
+                  Arnsberg                      Arras 
+                         1                          1 
+             Aschaffenburg                      Assen 
+                         1                          1 
+                    Athens                      Avion 
+                         1                          1 
+               Bad Aibling               Bad Dürkheim 
+                         1                          1 
+           Bad Mergentheim  Bad Neustadt an der Saale 
+                         1                          1 
+              Bad Oldesloe       Bagsværd, Copenhagen 
+                         1                          1 
+           Baguim do Monte                     Bamako 
+                         1                          2 
+                   Bambaly               Barranquilla 
+                         1                          1 
+                  Barreiro                      Basel 
+                         2                          1 
+            Belo Horizonte              Berchtesgaden 
+                         1                          1 
+         Bergisch Gladbach                     Berlin 
+                         2                         20 
+                   Béziers                     Bingen 
+                         1                          1 
+  Blyzhnye, Donetsk Oblast                  Böblingen 
+                         1                          1 
+                   Bocholt                   Bocholtz 
+                         2                          1 
+                    Bochum                       Bodø 
+                         2                          1 
+                    Bogotá                      Bondy 
+                         2                          1 
+                 Bonheiden                       Bonn 
+                         1                          3 
+                    Borken                    Bottrop 
+                         1                          1 
+                Bratislava               Braunschweig 
+                         1                          1 
+               Brazzaville                    Bregenz 
+                         1                          1 
+         Breisach am Rhein                     Bremen 
+                         2                          5 
+                   Bretten                   Brussels 
+                         1                          1 
+ Buchholz in der Nordheide                   Budapest 
+                         1                          2 
+                 Buduburam                      Bünde 
+                         1                          1 
+                Burghausen                  Bydgoszcz 
+                         1                          1 
+                    Cannes                    Cascais 
+                         1                          1 
+            Castrop-Rauxel                      Celle 
+                         2                          1 
+                    Coburg                   Colombes 
+                         1                          1 
+                   Conakry                Constantine 
+                         1                          1 
+                Coristanco                    Créteil 
+                         1                          1 
+                    Dachau                      Dakar 
+                         1                          1 
+                 Darmstadt                    Dieburg 
+                         1                          1 
+                  Dornbirn                   Dortmund 
+                         1                          2 
+                   Dresden                      Dreux 
+                         1                          1 
+                  Duisburg                     Durham 
+                         3                          1 
+                Düsseldorf                  Ebersberg 
+                         3                          1 
+          Eisenhüttenstadt                   Elmshorn 
+                         1                          1 
+                    Elsene          Erbach (Odenwald) 
+                         1                          1 
+                    Erfurt                Erpeldingen 
+                         1                          1 
+                Esmeraldas                      Essen 
+                         1                          4 
+                    Évreux                   Famaillá 
+                         1                          1 
+                     Farum                Filderstadt 
+                         1                          1 
+              Finsterwalde                    Firminy 
+                         1                          1 
+                    Föhren                    Forbach 
+                         1                          1 
+         Frankfurt am Main              Frederiksberg 
+                         5                          1 
+                  Freiberg       Freiburg im Breisgau 
+                         1                          3 
+               Freudenberg                  Friedberg 
+                         1                          1 
+           Friedrichshafen          Fujieda, Shizuoka 
+                         1                          1 
+         Gafanha da Nazaré                     Ganges 
+                         1                          1 
+             Gelsenkirchen                 Gevelsberg 
+                         2                          1 
+                    Gießen            Gjonaj, Prizren 
+                         1                          1 
+  Gonbad-e Kavus, Golestan                     Gospić 
+                         1                          1 
+                 Göttingen                       Graz 
+                         3                          4 
+              Grevenbroich                      Hagen 
+                         1                          1 
+       Hamamatsu, Shizuoka                    Hamburg 
+                         1                          9 
+                     Hanau                   Hannover 
+                         3                          3 
+                 Heemskerk                 Heidelberg 
+                         1                          2 
+   Heidenheim an der Brenz                  Heilbronn 
+                         2                          1 
+                Herrenberg                     Herten 
+                         1                          1 
+                Hildesheim                     Hlučín 
+                         1                          1 
+                       Hof            Hohen Neuendorf 
+                         1                          1 
+                  Højbjerg                       Horn 
+                         1                          2 
+                   Horsens                   Hørsholm 
+                         1                          1 
+               Hoyerswerda             Hradec Králové 
+                         1                          1 
+                  Hvidovre                 Ibbenbüren 
+                         1                          1 
+            Idar-Oberstein                   Istanbul 
+                         1                          1 
+                  Ivančice             Ivry-sur-Seine 
+                         1                          1 
+                Iyo, Ehime                      Kairo 
+                         1                          1 
+            Kaiserslautern            Karl-Marx-Stadt 
+                         1                          1 
+                    Kassel                 Kerteminde 
+                         2                          1 
+                   Khartum                   Kinshasa 
+                         1                          1 
+                Kirchbichl                    Koblenz 
+                         1                          1 
+                      Köln                Komono, Mie 
+                         6                          1 
+                     Konin                 Kopenhagen 
+                         1                          3 
+                    Košice          Kumagaya, Saitama 
+                         1                          1 
+                   Laatzen            Lagny-sur-Marne 
+                         1                          1 
+                      Lahr       Lake Grove, New York 
+                         1                          1 
+         Landsberg am Lech            Le Blanc-Mesnil 
+                         1                          1 
+                Leiderdorp                    Leipzig 
+                         2                          2 
+                Leverkusen                      Lezhë 
+                         1                          1 
+                   Liberia                       Lich 
+                         1                          1 
+               Lichtenfels                 Lilienfeld 
+                         1                          1 
+                     Lille                      Limbé 
+                         1                          1 
+                      Linz                  Lippstadt 
+                         1                          1 
+                    Lisboa                  Liverpool 
+                         1                          1 
+                     Livno                     London 
+                         1                          3 
+                      Lucé               Lüdinghausen 
+                         1                          1 
+              Ludwigsfelde      Ludwigshafen am Rhein 
+                         1                          1 
+                     Lunel                  Luxemburg 
+                         1                          1 
+                    Lyngby                    Lyngdal 
+                         1                          1 
+                      Lyon                  Magdeburg 
+                         1                          1 
+                     Mainz                      Malmö 
+                         3                          2 
+                  Mannheim                  Mansfield 
+                         1                          1 
+                  Marbella                  Marseille 
+                         1                          2 
+                  Maubeuge        Medford, New Jersey 
+                         1                          1 
+         Medina, Minnesota                  Memmingen 
+                         1                          2 
+                    Merzig                 Miltenberg 
+                         1                          1 
+           Mönchengladbach                Montaverner 
+                         1                          1 
+       Monte Azul Paulista                 Montevideo 
+                         1                          1 
+               Montfermeil          Montigny-lès-Metz 
+                         2                          1 
+                  Montmeló        Montreuil-sous-Bois 
+                         1                          1 
+                    Morges                    Mosbach 
+                         1                          1 
+                    Moskau            Mühldorf am Inn 
+                         1                          1 
+                   München                  Münsingen 
+                        12                          1 
+        Nagasaki, Nagasaki                   Nazareth 
+                         1                          1 
+                     Neuss      Neustadt an der Aisch 
+                         2                          1 
+Neustadt an der Weinstraße                 Nieder-Olm 
+                         3                          1 
+                     Nîmes                  Nordenham 
+                         1                          1 
+                Novi Pazar                   Nürnberg 
+                         1                          4 
+            Oberpullendorf                     Odense 
+                         1                          1 
+                     Oelde                  Offenburg 
+                         1                          1 
+                 Oldenburg                    Olsztyn 
+                         1                          1 
+                      Oslo                  Osnabrück 
+                         1                          2 
+                Ostfildern                 Otterndorf 
+                         1                          1 
+               Ouagadougou                   Ourinhos 
+                         1                          1 
+         Palma de Mallorca                      Paris 
+                         1                          3 
+                     Parma                  Pforzheim 
+                         1                          1 
+                    Poissy                  Porsgrunn 
+                         1                          1 
+                     Porto                     Porvoo 
+                         1                          1 
+                   Potsdam                     Požega 
+                         1                          1 
+                    Poznań                      Praha 
+                         1                          2 
+                   Pulheim                  Purmerend 
+                         1                          1 
+                    Pyrgos                  Rendsburg 
+                         1                          1 
+         Richardson, Texas                      Riesa 
+                         1                          1 
+                  Ringsted                Ris-Orangis 
+                         1                          1 
+                   Rostock                  Rotterdam 
+                         1                          2 
+                  Rottweil                Ruda Śląska 
+                         1                          1 
+        Rüdesheim am Rhein                Saarbrücken 
+                         1                          1 
+                 Saarlouis                Saint-Denis 
+                         1                          1 
+                Sainte-Ode                   Salzburg 
+                         1                          4 
+                 São Paulo                  Sarcelles 
+                         1                          2 
+                    Sarnen                 Schorndorf 
+                         1                          2 
+               Schweinfurt          Seeheim-Jugenheim 
+                         1                          1 
+                    Sèvres                     Siegen 
+                         1                          1 
+                 Silkeborg                       Sion 
+                         1                          1 
+                    Slough                      Sofia 
+                         1                          1 
+                  Solingen                Sonderhofen 
+                         2                          1 
+    South Riding, Virginia                     Speyer 
+                         1                          2 
+                     Split                     Stains 
+                         1                          1 
+                     Steyr                Stourbridge 
+                         1                          1 
+                Strasbourg                  Straubing 
+                         1                          1 
+                 Stuttgart                  Sundsvall 
+                        13                          1 
+            Székesfehérvár                Szombathely 
+                         1                          1 
+                  Taastrup                   Terrassa 
+                         1                          1 
+              Thessaloniki                   Titograd 
+                         1                          1 
+         Tostado, Santa Fe                     Toulon 
+                         1                          1 
+                  Toulouse                      Tours 
+                         1                          1 
+                     Trier                  Troisdorf 
+                         1                          1 
+                     Tulln                      Turku 
+                         1                          1 
+                Überlingen                      Uccle 
+                         1                          1 
+              Uchtelfangen                 Uji, Kyoto 
+                         1                          1 
+                     Ulsan                     Vechta 
+                         2                          1 
+                      Veen                    Viersen 
+                         1                          1 
+               Villajoyosa   Villeneuve-Saint-Georges 
+                         1                          2 
+    Villingen-Schwenningen                  Vilshofen 
+                         3                          1 
+                     Volda                      Volos 
+                         1                          1 
+                Waiblingen           Wangen im Allgäu 
+                         1                          1 
+         Washington, D. C.     Weilheim in Oberbayern 
+                         1                          1 
+                 Weinstadt                     Wemmel 
+                         1                          1 
+               Wernigerode                       Wien 
+                         1                          3 
+                 Wieringen                  Wiesbaden 
+                         1                          2 
+             Wilhelmshaven                    Willich 
+                         1                          1 
+                    Witten                  Wolfsburg 
+                         2                          1 
+                    Wormer                   Würselen 
+                         1                          2 
+                   Yaoundé                    Yerevan 
+                         1                          1 
+        Yokohama, Kanagawa                     Zagreb 
+                         2                          7 
+                     Zaria                     Zenica 
+                         1                          1 
+                    Žilina                   Zollikon 
+                         1                          1 
+                    Zürich                    Zvornik 
+                         4                          1 
+                    Zwolle 
+                         1 
+
+$position
+
+      Attack - Centre-Forward          Attack - Left Winger 
+                           73                            22 
+        Attack - Right Winger       Attack - Second Striker 
+                           30                             7 
+       Defender - Centre-Back          Defender - Left-Back 
+                           88                            40 
+        Defender - Right-Back                    Goalkeeper 
+                           44                            69 
+midfield - Attacking Midfield   midfield - Central Midfield 
+                           40                            56 
+midfield - Defensive Midfield      midfield - Left Midfield 
+                           40                             2 
+    midfield - Right Midfield 
+                            4 
+
+$foot
+
+ both  left right 
+   34   118   354 
+
+$club
+
+      1.FC Köln    1.FC Köln II   1.FC Köln U19  1.FSV Mainz 05  B. Dortmund II 
+             27               5               1              27               3 
+  B. Leverkusen   Bayern Munich   Bor. Dortmund Bor. M'gladbach    E. Frankfurt 
+             27              27              30              27              30 
+    FC Augsburg FC Augsburg U19   FC Schalke 04      Hertha BSC   Hertha BSC II 
+             31               1              31              27               1 
+ Hertha BSC U19      RB Leipzig  RB Leipzig U17  RB Leipzig U19     SC Freiburg 
+              1              25               1               1              26 
+ TSG Hoffenheim    Union Berlin   VfB Stuttgart      VfL Bochum   VfL Wolfsburg 
+             31              27              29              28              25 
+   W. Bremen II   W. Bremen U19   Werder Bremen 
+              1               1              24 
+
+$player_agent
+
+                          11WINS                 act SPORTS GROUP 
+                               7                                1 
+Agent is known - Player under 18                AIS SPORT SERVICE 
+                               7                                1 
+                 AKA Global GmbH              Alfaria sports GmbH 
+                               3                                1 
+                  AMS CONSULTING                        Aneke/PMG 
+                               1                                1 
+            Apertura Sports GmbH                  Ariel Krasouski 
+                               1                                1 
+            ASBW Sport Marketing                       ATG Sports 
+                               2                                1 
+                         B O K S                      B360 Sports 
+                               1                                3 
+            BALLWERK Sports GmbH                         Bigpoint 
+                               1                                1 
+                       BMG-SPORT          BMS Sportconsulting ... 
+                               1                                4 
+                    BoostMySport               Boutique Transfers 
+                               1                                5 
+                Briem Soccer ...                BS Group - BS Law 
+                               1                                2 
+                      BY AND FOR              BY Sport Consulting 
+                               1                                1 
+                             C.R                     CAA Base Ltd 
+                               1                                7 
+                     CAA Stellar                 Caligiuri Sports 
+                              14                                1 
+                        Carmenta                         Classico 
+                               1                                2 
+                       CMA Group                        CN Sports 
+                               1                               10 
+            Concept Sport Agency               Creatio Management 
+                               1                                1 
+                              CS                       D20 Sports 
+                               1                                1 
+            DC International ...                       Dirk Hebel 
+                               2                                5 
+                DLT Sports Group             Dr. Marco Gutfleisch 
+                               1                                1 
+              Dr. Michael Becker              Eleven Talent Group 
+                               1                                1 
+         Elite Project Group ...                 Elite Sports ... 
+                               1                                2 
+            EM Sports Consulting                      EMG Mundial 
+                               2                                8 
+                     Epic Sports                 Excellence Sport 
+                               2                                1 
+                       F-F SPORT                  Fabryka Futbolu 
+                               1                                1 
+                feel soccer GmbH                   FG Sports GmbH 
+                               5                                1 
+                   FM Worldsport                     Fröhlich ... 
+                               1                                1 
+                       FSB – ...                              FTC 
+                               1                                2 
+                 Fútbol División                        Gestifute 
+                               1                                2 
+               Global Soccer ...                          GoalSky 
+                               1                                1 
+               Gol International                 Golden Patch ... 
+                               3                                1 
+          GOOD ADVICE Sports ...                       H.S.P. ... 
+                               1                                2 
+                      Haspel ...                   HCM Sports ... 
+                               4                                4 
+                         Hexagon              HMH Sportmanagement 
+                               2                                1 
+                             IFM                   Int. Sport ... 
+                               3                                2 
+            INVSPORT (Sergio ...             IS SPORTS AGENCY ... 
+                               1                                1 
+             ISM Int. Soccer ...                     Ivan Bosnjak 
+                               1                                1 
+           JEB ENTERTAINMENT ...                   K2K Sports ... 
+                               1                                1 
+              Karl M. Herzog ...                   Kay Sports ... 
+                               9                                1 
+                      Key United                         Kick&amp;Run 
+                               1                                2 
+                    KIN Partners                    KL Sportsbase 
+                               1                                4 
+                Klan Soccer FZCO              Kögl &amp; Partner GmbH 
+                               1                                2 
+             Konstantinos Farras                          Kostila 
+                               2                                1 
+                    Lasana KOITA                   Léandre Chouya 
+                               1                                1 
+               LIAN Sports Group                    LK Management 
+                               4                                1 
+                  Lorimanagement               M-Soccermanagement 
+                               1                                2 
+                  management 360                Manuel García ... 
+                               1                                1 
+                    Marjan Sisic                    MD Management 
+                               1                                1 
+                       MD Sports              MK Sport Consulting 
+                               1                                1 
+                   Mondo Victory             More than Sport GmbH 
+                               1                                1 
+         MR Sport Management ...                     Murza Eduard 
+                               1                                1 
+                     neblung ...                 Neubauer 13 GmbH 
+                               1                                1 
+                         NexSt11                        NGA Sport 
+                               1                                1 
+                      NGM SPORTS               Niagara Sports ... 
+                               2                                3 
+                      NINE Group                         no agent 
+                               1                                2 
+                      Nordic Sky                          NSG ApS 
+                               2                                1 
+                      OLP Sports                   Only Pro Sport 
+                               1                                1 
+                   P&amp;P Sport ...                            Pando 
+                               3                                1 
+            Pedro Aldave Ortuzar                  People In Sport 
+                               1                                3 
+                  PEP Consulting                             PESM 
+                               1                                3 
+                 PRO Profil GmbH                   Proeleven S.A. 
+                              17                                3 
+             ProfiSports Prskalo              Prolific Sports ... 
+                               1                                1 
+                            PURE                    Quantum Sport 
+                               1                                1 
+                 Rafaela Pimenta                        Relatives 
+                               4                               19 
+                Robert Schneider                   Roberto Tukada 
+                               6                                1 
+                           ROGON                        ROGON U23 
+                              16                                1 
+                            ROOF                     ROOF Talents 
+                              30                                1 
+                           ROYAL             Rummenigge Sport ... 
+                               1                                2 
+               SBE Management AG                              SEG 
+                               2                                7 
+                    Selected ...                  Siebert &amp; Backs 
+                               1                                1 
+             Signature - ISCM AG                           Skylar 
+                               3                                1 
+                        SMG GmbH                   SMI SPORTS ... 
+                               1                                1 
+               Soccer Mondial AG               SOCCERNATION GROUP 
+                               2                                1 
+                 Soccertalk GmbH           Solbakken / Player ... 
+                               4                                1 
+                Sport Avenir ...               Sport Business ... 
+                               1                                2 
+                     Sport Cover                     SPORT INVEST 
+                               1                                2 
+                      sportlobby            Sports eXcellence ... 
+                               1                                5 
+                  Sports360 GmbH                   Stephan Engels 
+                              27                                1 
+                        SWSports                   TDL Sports ... 
+                               1                                1 
+                      TDS SPORTS                      Team Raiola 
+                               1                                3 
+                   Teamgeist ...                   teamplayer ... 
+                               3                                1 
+                      TFM Agency                    think forward 
+                               1                                2 
+                  Thomas Meunier                      Timo Hübers 
+                               1                                1 
+                       TPWE GmbH                  TrueSports GmbH 
+                               3                                1 
+            Ulisses Santos - ...                           UNIDOS 
+                               1                                1 
+             Unique Sports Group             Universal Sports ... 
+                              18                                2 
+                             V4S                          VIDA 11 
+                               2                                4 
+                    W&amp;K Fairplay                  W.Egal O.S.F.M. 
+                               1                                1 
+                       Wasserman               WINStar Management 
+                              18                                1 
+               Wojciech Zlobicki                            Wolfs 
+                               1                                1 
+                 World in Motion              World Soccer Agency 
+                               2                                1 
+                             WoS                        YMU Group 
+                               1                                1 
+                       YOU FIRST 
+                               6 
+
+$outfitter
+
+      adidas   HashtagOne       Mizuno  New Balance         Nike         Puma 
+          82            1            1            1           60           43 
+      Stanno     Uhlsport Under Armour 
+           1            2            2 </code></pre>
+</div>
 </div>
 <p>En este fragmento de código, <strong>str(df)</strong> muestra la estructura del dataframe, lo que proporciona información sobre el tipo de datos y la cantidad de observaciones en cada columna. Luego, <strong>summary(df)</strong> presenta un resumen estadístico de las variables numéricas, incluyendo la media, mediana, mínimo, máximo, etc.</p>
 <p>Después, na_count calcula la cantidad de valores faltantes por columna y <strong>print(na_count)</strong> imprime estos recuentos. Finalmente, <strong>summary_categorical</strong> utiliza <strong>lapply()</strong> para calcular la frecuencia de valores únicos para las variables categóricas, lo que permite tener una idea de la distribución de estas variables en el conjunto de</p>
@@ -304,15 +1873,15 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 </ol></li>
 </ul></li>
 </ul>
-<p>Aquí te muestro cómo podrías estructurar esta sección:</p>
+<p>Aquí muestro cómo podemos estructurar esta sección:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Identificación de valores faltantes</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>na_count <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">is.na</span>(df))</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Cantidad de valores faltantes por columna:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Identificación de valores faltantes</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>na_count <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">is.na</span>(df))</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Cantidad de valores faltantes por columna:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Cantidad de valores faltantes por columna:"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(na_count)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(na_count)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            ...1             name        full_name              age 
                0                0              286                0 
@@ -325,35 +1894,35 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
        outfitter 
              322 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Manejo de valores faltantes</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo de eliminación de filas con valores faltantes</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>df_sin_na <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(df)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Dimensiones del dataframe después de eliminar filas con valores faltantes:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Manejo de valores faltantes</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo de eliminación de filas con valores faltantes</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>df_sin_na <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(df)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Dimensiones del dataframe después de eliminar filas con valores faltantes:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Dimensiones del dataframe después de eliminar filas con valores faltantes:"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(df_sin_na)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(df_sin_na)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 76 17</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Identificación de valores duplicados</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>duplicated_count <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">duplicated</span>(df))</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Cantidad de valores duplicados en el dataframe:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Identificación de valores duplicados</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>duplicated_count <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">duplicated</span>(df))</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Cantidad de valores duplicados en el dataframe:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Cantidad de valores duplicados en el dataframe:"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(duplicated_count)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(duplicated_count)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Manejo de valores duplicados</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo de eliminación de valores duplicados</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>df_sin_duplicados <span class="ot">&lt;-</span> <span class="fu">unique</span>(df)</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Dimensiones del dataframe después de eliminar valores duplicados:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Manejo de valores duplicados</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Ejemplo de eliminación de valores duplicados</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>df_sin_duplicados <span class="ot">&lt;-</span> <span class="fu">unique</span>(df)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Dimensiones del dataframe después de eliminar valores duplicados:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Dimensiones del dataframe después de eliminar valores duplicados:"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(df_sin_duplicados)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(df_sin_duplicados)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 515  17</code></pre>
 </div>
@@ -375,11 +1944,11 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 </ul>
 <p>Aquí te muestro cómo podrías estructurar esta sección:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Columna: 'name'</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Tipo: Character</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Descripción: Nombre del jugador.</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribución de valores únicos y frecuencia de ocurrencia</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Columna: 'name'</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Tipo: Character</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Descripción: Nombre del jugador.</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribución de valores únicos y frecuencia de ocurrencia</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
             Aarón Martín            Aaron Zehnter             Abdou Diallo 
@@ -727,39 +2296,39 @@ Noah Joel Sarenren Bazee              Noah Mbamba           Noah Weißhaupt
           Yussuf Poulsen   Yvandro Borges Sanches 
                        1                        1 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Columna: 'age'</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Tipo: Numeric</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Descripción: Edad del jugador.</span></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadísticas descriptivas</span></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df<span class="sc">$</span>age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Columna: 'age'</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Tipo: Numeric</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Descripción: Edad del jugador.</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadísticas descriptivas</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df<span class="sc">$</span>age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   17.00   22.00   25.00   25.68   29.00   39.00 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualización</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(df<span class="sc">$</span>age, <span class="at">main =</span> <span class="st">"Distribución de Edades"</span>, <span class="at">xlab =</span> <span class="st">"Edad"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualización</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(df<span class="sc">$</span>age, <span class="at">main =</span> <span class="st">"Distribución de Edades"</span>, <span class="at">xlab =</span> <span class="st">"Edad"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="Análisis-de-Datos-de-Jugadores-de-la-Bundesliga-en-R_files/figure-html/Resumen%20detallado%20de%20cada%20columna-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Columna: 'height'</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Tipo: Numeric</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Descripción: Altura del jugador.</span></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadísticas descriptivas</span></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df<span class="sc">$</span>height)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Columna: 'height'</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Tipo: Numeric</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Descripción: Altura del jugador.</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadísticas descriptivas</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df<span class="sc">$</span>height)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   1.680   1.800   1.850   1.848   1.890   2.000 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualización</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(df<span class="sc">$</span>height, <span class="at">main =</span> <span class="st">"Distribución de Alturas"</span>, <span class="at">xlab =</span> <span class="st">"Altura"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualización</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(df<span class="sc">$</span>height, <span class="at">main =</span> <span class="st">"Distribución de Alturas"</span>, <span class="at">xlab =</span> <span class="st">"Altura"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="Análisis-de-Datos-de-Jugadores-de-la-Bundesliga-en-R_files/figure-html/Resumen%20detallado%20de%20cada%20columna-2.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Columna: 'nationality'</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Tipo: Character</span></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Descripción: Nacionalidad del jugador.</span></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribución de valores únicos y frecuencia de ocurrencia</span></span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>nationality)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Columna: 'nationality'</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Tipo: Character</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Descripción: Nacionalidad del jugador.</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribución de valores únicos y frecuencia de ocurrencia</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>nationality)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
                           Albania                           Algeria 
@@ -911,11 +2480,11 @@ Noah Joel Sarenren Bazee              Noah Mbamba           Noah Weißhaupt
                    Uruguay&nbsp;&nbsp;Spain 
                                 1 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Columna: 'club'</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Tipo: Character</span></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Descripción: Club al que pertenece el jugador.</span></span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribución de valores únicos y frecuencia de ocurrencia</span></span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>club)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Columna: 'club'</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Tipo: Character</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Descripción: Club al que pertenece el jugador.</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribución de valores únicos y frecuencia de ocurrencia</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>club)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
       1.FC Köln    1.FC Köln II   1.FC Köln U19  1.FSV Mainz 05  B. Dortmund II 
@@ -931,11 +2500,11 @@ Noah Joel Sarenren Bazee              Noah Mbamba           Noah Weißhaupt
    W. Bremen II   W. Bremen U19   Werder Bremen 
               1               1              24 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Columna: 'position'</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Tipo: Character</span></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Descripción: Posición del jugador en el campo.</span></span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribución de valores únicos y frecuencia de ocurrencia</span></span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>position)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Columna: 'position'</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Tipo: Character</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Descripción: Posición del jugador en el campo.</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribución de valores únicos y frecuencia de ocurrencia</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df<span class="sc">$</span>position)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
       Attack - Centre-Forward          Attack - Left Winger 
@@ -954,12 +2523,11 @@ midfield - Defensive Midfield      midfield - Left Midfield
                             4 </code></pre>
 </div>
 </div>
-<p><strong>Hacer el análisis de los resultados no te olvides mmvrg</strong></p>
 <p>En este código, se proporciona un resumen detallado para cada columna del dataframe. Para cada columna, se describe el nombre, tipo de datos y significado de la variable. Luego, se presentan estadísticas descriptivas y, cuando es apropiado, se incluyen visualizaciones para comprender mejor la distribución de los datos.</p>
 <p>Adaptar este resumen a las características específicas de tus datos y las necesidades de tu análisis.</p>
 </section>
 <section id="visualización-inicial." class="level2">
-<h2 class="anchored" data-anchor-id="visualización-inicial.">Visualización inicial.</h2>
+<h2 class="anchored" data-anchor-id="visualización-inicial."><strong>Visualización inicial.</strong></h2>
 <ul>
 <li><p><strong>Visualización de recuentos de variables clave:</strong> En la sección de visualización de recuentos de variables clave, puedes proporcionar gráficos que muestren la distribución de variables clave en tu conjunto de datos. Esto puede incluir variables como edad, nacionalidad, posición del jugador, etc. Aquí te muestro algunas ideas de visualizaciones que podrías incluir.</p>
 <ol type="1">
@@ -973,65 +2541,65 @@ midfield - Defensive Midfield      midfield - Left Midfield
 </ol></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histograma de edad</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(df<span class="sc">$</span>age, <span class="at">main =</span> <span class="st">"Distribución de Edades"</span>, <span class="at">xlab =</span> <span class="st">"Edad"</span>, <span class="at">ylab =</span> <span class="st">"Frecuencia"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histograma de edad</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(df<span class="sc">$</span>age, <span class="at">main =</span> <span class="st">"Distribución de Edades"</span>, <span class="at">xlab =</span> <span class="st">"Edad"</span>, <span class="at">ylab =</span> <span class="st">"Frecuencia"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="Análisis-de-Datos-de-Jugadores-de-la-Bundesliga-en-R_files/figure-html/Visualización%20de%20recuentos%20de%20variable%20clave-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir el umbral de relevancia para las nacionalidades</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>umbral_nacionalidades <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular la tabla de frecuencia de nacionalidades</span></span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>nationality_table <span class="ot">&lt;-</span> <span class="fu">table</span>(df<span class="sc">$</span>nationality)</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtrar las nacionalidades más relevantes</span></span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>relevant_nationalities <span class="ot">&lt;-</span> nationality_table[nationality_table <span class="sc">&gt;=</span> umbral_nacionalidades]</span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar el gráfico de barras</span></span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(relevant_nationalities, <span class="at">main =</span> <span class="st">"Distribución de Nacionalidades Relevantes"</span>, <span class="at">xlab =</span> <span class="st">"Nacionalidad"</span>, <span class="at">ylab =</span> <span class="st">"Cantidad de Jugadores"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir el umbral de relevancia para las nacionalidades</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>umbral_nacionalidades <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular la tabla de frecuencia de nacionalidades</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>nationality_table <span class="ot">&lt;-</span> <span class="fu">table</span>(df<span class="sc">$</span>nationality)</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtrar las nacionalidades más relevantes</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>relevant_nationalities <span class="ot">&lt;-</span> nationality_table[nationality_table <span class="sc">&gt;=</span> umbral_nacionalidades]</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar el gráfico de barras</span></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(relevant_nationalities, <span class="at">main =</span> <span class="st">"Distribución de Nacionalidades Relevantes"</span>, <span class="at">xlab =</span> <span class="st">"Nacionalidad"</span>, <span class="at">ylab =</span> <span class="st">"Cantidad de Jugadores"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="Análisis-de-Datos-de-Jugadores-de-la-Bundesliga-en-R_files/figure-html/Visualización%20de%20recuentos%20de%20variable%20clave-2.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de barras de posición</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(df<span class="sc">$</span>position), <span class="at">main =</span> <span class="st">"Distribución de Posiciones"</span>, <span class="at">xlab =</span> <span class="st">"Posición"</span>, <span class="at">ylab =</span> <span class="st">"Cantidad de Jugadores"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de barras de posición</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(df<span class="sc">$</span>position), <span class="at">main =</span> <span class="st">"Distribución de Posiciones"</span>, <span class="at">xlab =</span> <span class="st">"Posición"</span>, <span class="at">ylab =</span> <span class="st">"Cantidad de Jugadores"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="Análisis-de-Datos-de-Jugadores-de-la-Bundesliga-en-R_files/figure-html/Visualización%20de%20recuentos%20de%20variable%20clave-3.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir el umbral de relevancia para los clubes</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>umbral_clubes <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular la tabla de frecuencia de clubes</span></span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>club_table <span class="ot">&lt;-</span> <span class="fu">table</span>(df<span class="sc">$</span>club)</span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtrar los clubes más relevantes</span></span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>relevant_clubs <span class="ot">&lt;-</span> club_table[club_table <span class="sc">&gt;=</span> umbral_clubes]</span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar el gráfico de barras</span></span>
-<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(relevant_clubs, <span class="at">main =</span> <span class="st">"Distribución de Clubes Relevantes"</span>, <span class="at">xlab =</span> <span class="st">"Club"</span>, <span class="at">ylab =</span> <span class="st">"Cantidad de Jugadores"</span>, <span class="at">las =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir el umbral de relevancia para los clubes</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>umbral_clubes <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular la tabla de frecuencia de clubes</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>club_table <span class="ot">&lt;-</span> <span class="fu">table</span>(df<span class="sc">$</span>club)</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtrar los clubes más relevantes</span></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>relevant_clubs <span class="ot">&lt;-</span> club_table[club_table <span class="sc">&gt;=</span> umbral_clubes]</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar el gráfico de barras</span></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(relevant_clubs, <span class="at">main =</span> <span class="st">"Distribución de Clubes Relevantes"</span>, <span class="at">xlab =</span> <span class="st">"Club"</span>, <span class="at">ylab =</span> <span class="st">"Cantidad de Jugadores"</span>, <span class="at">las =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="Análisis-de-Datos-de-Jugadores-de-la-Bundesliga-en-R_files/figure-html/Visualización%20de%20recuentos%20de%20variable%20clave-4.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir el umbral de relevancia</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>umbral <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular la tabla de frecuencia de nacionalidades</span></span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>nationality_table <span class="ot">&lt;-</span> <span class="fu">table</span>(df<span class="sc">$</span>nationality)</span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtrar los países más relevantes</span></span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>relevant_countries <span class="ot">&lt;-</span> nationality_table[nationality_table <span class="sc">&gt;=</span> umbral]</span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar el gráfico de pastel</span></span>
-<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span>(relevant_countries, <span class="at">main =</span> <span class="st">"Proporción de Nacionalidades Relevantes"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir el umbral de relevancia</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>umbral <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular la tabla de frecuencia de nacionalidades</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>nationality_table <span class="ot">&lt;-</span> <span class="fu">table</span>(df<span class="sc">$</span>nationality)</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtrar los países más relevantes</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>relevant_countries <span class="ot">&lt;-</span> nationality_table[nationality_table <span class="sc">&gt;=</span> umbral]</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar el gráfico de pastel</span></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span>(relevant_countries, <span class="at">main =</span> <span class="st">"Proporción de Nacionalidades Relevantes"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="Análisis-de-Datos-de-Jugadores-de-la-Bundesliga-en-R_files/figure-html/Visualización%20de%20recuentos%20de%20variable%20clave-5.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Diagrama de dispersión de edad vs. altura</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(df<span class="sc">$</span>age, df<span class="sc">$</span>height, <span class="at">main =</span> <span class="st">"Diagrama de Dispersión: Edad vs. Altura"</span>, <span class="at">xlab =</span> <span class="st">"Edad"</span>, <span class="at">ylab =</span> <span class="st">"Altura"</span>, <span class="at">pch =</span> <span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Diagrama de dispersión de edad vs. altura</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(df<span class="sc">$</span>age, df<span class="sc">$</span>height, <span class="at">main =</span> <span class="st">"Diagrama de Dispersión: Edad vs. Altura"</span>, <span class="at">xlab =</span> <span class="st">"Edad"</span>, <span class="at">ylab =</span> <span class="st">"Altura"</span>, <span class="at">pch =</span> <span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="Análisis-de-Datos-de-Jugadores-de-la-Bundesliga-en-R_files/figure-html/Visualización%20de%20recuentos%20de%20variable%20clave-6.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular la tabla de frecuencia de posición por nacionalidad</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>position_by_nationality <span class="ot">&lt;-</span> <span class="fu">table</span>(df<span class="sc">$</span>position, df<span class="sc">$</span>nationality)</span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular la suma de jugadores por posición y filtrar las posiciones relevantes</span></span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>posiciones_relevantes <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(position_by_nationality) <span class="sc">&gt;=</span> <span class="dv">10</span></span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>position_by_nationality <span class="ot">&lt;-</span> position_by_nationality[posiciones_relevantes, ]</span>
-<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar el gráfico de barras apiladas</span></span>
-<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(position_by_nationality, </span>
-<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Distribución de Posiciones Relevantes por Nacionalidad"</span>, </span>
-<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Nacionalidad"</span>, </span>
-<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">"Cantidad de Jugadores"</span>, </span>
-<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend =</span> <span class="fu">rownames</span>(position_by_nationality))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular la tabla de frecuencia de posición por nacionalidad</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>position_by_nationality <span class="ot">&lt;-</span> <span class="fu">table</span>(df<span class="sc">$</span>position, df<span class="sc">$</span>nationality)</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular la suma de jugadores por posición y filtrar las posiciones relevantes</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>posiciones_relevantes <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(position_by_nationality) <span class="sc">&gt;=</span> <span class="dv">10</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>position_by_nationality <span class="ot">&lt;-</span> position_by_nationality[posiciones_relevantes, ]</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar el gráfico de barras apiladas</span></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(position_by_nationality, </span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Distribución de Posiciones Relevantes por Nacionalidad"</span>, </span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Nacionalidad"</span>, </span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">"Cantidad de Jugadores"</span>, </span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend =</span> <span class="fu">rownames</span>(position_by_nationality))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="Análisis-de-Datos-de-Jugadores-de-la-Bundesliga-en-R_files/figure-html/Visualización%20de%20recuentos%20de%20variable%20clave-7.png" class="img-fluid" width="672"></p>
 </div>
@@ -1047,33 +2615,37 @@ midfield - Defensive Midfield      midfield - Left Midfield
 </ol></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de barras de las diez nacionalidades más comunes</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>top_nationalities <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">sort</span>(<span class="fu">table</span>(df<span class="sc">$</span>nationality), <span class="at">decreasing =</span> <span class="cn">TRUE</span>))[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(df<span class="sc">$</span>nationality)[top_nationalities], <span class="at">main =</span> <span class="st">"Las diez nacionalidades más comunes"</span>, <span class="at">xlab =</span> <span class="st">"Nacionalidad"</span>, <span class="at">ylab =</span> <span class="st">"Cantidad de Jugadores"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de barras de las diez nacionalidades más comunes</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>top_nationalities <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">sort</span>(<span class="fu">table</span>(df<span class="sc">$</span>nationality), <span class="at">decreasing =</span> <span class="cn">TRUE</span>))[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(df<span class="sc">$</span>nationality)[top_nationalities], <span class="at">main =</span> <span class="st">"Las diez nacionalidades más comunes"</span>, <span class="at">xlab =</span> <span class="st">"Nacionalidad"</span>, <span class="at">ylab =</span> <span class="st">"Cantidad de Jugadores"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="Análisis-de-Datos-de-Jugadores-de-la-Bundesliga-en-R_files/figure-html/Creación%20de%20gráficos%20de%20barras%20y%20nubes%20de%20palabras-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de barras de las diez posiciones más comunes</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>top_positions <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">sort</span>(<span class="fu">table</span>(df<span class="sc">$</span>position), <span class="at">decreasing =</span> <span class="cn">TRUE</span>))[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(df<span class="sc">$</span>position)[top_positions], <span class="at">main =</span> <span class="st">"Las diez posiciones más comunes"</span>, <span class="at">xlab =</span> <span class="st">"Posición"</span>, <span class="at">ylab =</span> <span class="st">"Cantidad de Jugadores"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de barras de las diez posiciones más comunes</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>top_positions <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">sort</span>(<span class="fu">table</span>(df<span class="sc">$</span>position), <span class="at">decreasing =</span> <span class="cn">TRUE</span>))[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(df<span class="sc">$</span>position)[top_positions], <span class="at">main =</span> <span class="st">"Las diez posiciones más comunes"</span>, <span class="at">xlab =</span> <span class="st">"Posición"</span>, <span class="at">ylab =</span> <span class="st">"Cantidad de Jugadores"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="Análisis-de-Datos-de-Jugadores-de-la-Bundesliga-en-R_files/figure-html/Creación%20de%20gráficos%20de%20barras%20y%20nubes%20de%20palabras-2.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nube de palabras de los clubes</span></span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wordcloud)</span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="fu">wordcloud</span>(<span class="fu">names</span>(<span class="fu">table</span>(df<span class="sc">$</span>club)), <span class="at">freq =</span> <span class="fu">table</span>(df<span class="sc">$</span>club), <span class="at">max.words =</span> <span class="dv">50</span>, <span class="at">min.freq =</span> <span class="dv">3</span>, <span class="at">random.order =</span> <span class="cn">FALSE</span>, <span class="at">colors =</span> <span class="fu">brewer.pal</span>(<span class="dv">8</span>, <span class="st">"Dark2"</span>),</span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">main =</span> <span class="st">"Nube de Palabras de Clubes"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nube de palabras de los clubes</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wordcloud)</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="fu">wordcloud</span>(<span class="fu">names</span>(<span class="fu">table</span>(df<span class="sc">$</span>club)), <span class="at">freq =</span> <span class="fu">table</span>(df<span class="sc">$</span>club), <span class="at">max.words =</span> <span class="dv">50</span>, <span class="at">min.freq =</span> <span class="dv">3</span>, <span class="at">random.order =</span> <span class="cn">FALSE</span>, <span class="at">colors =</span> <span class="fu">brewer.pal</span>(<span class="dv">8</span>, <span class="st">"Dark2"</span>),</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">main =</span> <span class="st">"Nube de Palabras de Clubes"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in wordcloud(names(table(df$club)), freq = table(df$club), max.words =
 50, : TSG Hoffenheim could not be fit on page. It will not be plotted.</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in wordcloud(names(table(df$club)), freq = table(df$club), max.words =
-50, : E. Frankfurt could not be fit on page. It will not be plotted.</code></pre>
+50, : 1.FC Köln could not be fit on page. It will not be plotted.</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in wordcloud(names(table(df$club)), freq = table(df$club), max.words =
-50, : VfB Stuttgart could not be fit on page. It will not be plotted.</code></pre>
+50, : B. Leverkusen could not be fit on page. It will not be plotted.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in wordcloud(names(table(df$club)), freq = table(df$club), max.words =
+50, : Bayern Munich could not be fit on page. It will not be plotted.</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in wordcloud(names(table(df$club)), freq = table(df$club), max.words =
@@ -1102,13 +2674,18 @@ midfield - Defensive Midfield      midfield - Left Midfield
 <div class="cell-output-display">
 <p><img src="Análisis-de-Datos-de-Jugadores-de-la-Bundesliga-en-R_files/figure-html/Creación%20de%20gráficos%20de%20barras%20y%20nubes%20de%20palabras-3.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nube de palabras de los agentes de los jugadores</span></span>
-<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wordcloud</span>(<span class="fu">names</span>(<span class="fu">table</span>(df<span class="sc">$</span>player_agent)), <span class="at">freq =</span> <span class="fu">table</span>(df<span class="sc">$</span>player_agent), <span class="at">max.words =</span> <span class="dv">50</span>, <span class="at">min.freq =</span> <span class="dv">3</span>, <span class="at">random.order =</span> <span class="cn">FALSE</span>, <span class="at">colors =</span> <span class="fu">brewer.pal</span>(<span class="dv">8</span>, <span class="st">"Dark2"</span>),</span>
-<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">main =</span> <span class="st">"Nube de Palabras de Agentes de Jugadores"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nube de palabras de los agentes de los jugadores</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wordcloud</span>(<span class="fu">names</span>(<span class="fu">table</span>(df<span class="sc">$</span>player_agent)), <span class="at">freq =</span> <span class="fu">table</span>(df<span class="sc">$</span>player_agent), <span class="at">max.words =</span> <span class="dv">50</span>, <span class="at">min.freq =</span> <span class="dv">3</span>, <span class="at">random.order =</span> <span class="cn">FALSE</span>, <span class="at">colors =</span> <span class="fu">brewer.pal</span>(<span class="dv">8</span>, <span class="st">"Dark2"</span>),</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">main =</span> <span class="st">"Nube de Palabras de Agentes de Jugadores"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in wordcloud(names(table(df$player_agent)), freq =
 table(df$player_agent), : Sports360 GmbH could not be fit on page. It will not
 be plotted.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in wordcloud(names(table(df$player_agent)), freq =
+table(df$player_agent), : Signature - ISCM AG could not be fit on page. It will
+not be plotted.</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="Análisis-de-Datos-de-Jugadores-de-la-Bundesliga-en-R_files/figure-html/Creación%20de%20gráficos%20de%20barras%20y%20nubes%20de%20palabras-4.png" class="img-fluid" width="672"></p>
@@ -1117,7 +2694,7 @@ be plotted.</code></pre>
 <p>Estas visualizaciones proporcionan una representación gráfica de la distribución de ciertas variables clave en tu conjunto de datos y pueden ayudar a identificar patrones o tendencias importantes. Nos aseguramos de ajustar las visualizaciones según las características específicas de tus datos y los objetivos de tu análisis.</p>
 </section>
 <section id="limpieza-y-preparación-de-datos." class="level2">
-<h2 class="anchored" data-anchor-id="limpieza-y-preparación-de-datos.">Limpieza y preparación de datos.</h2>
+<h2 class="anchored" data-anchor-id="limpieza-y-preparación-de-datos."><strong>Limpieza y preparación de datos.</strong></h2>
 <ul>
 <li><strong>Eliminación de columnas innecesarias:</strong> En la sección de eliminación de columnas innecesarias, puedes mostrar cómo identificar y eliminar aquellas columnas que no son relevantes para tu análisis o que contienen principalmente valores nulos o duplicados. Aquí hay algunas acciones que podrías realizar.
 <ol type="1">
@@ -1128,19 +2705,19 @@ be plotted.</code></pre>
 </ol></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Identificar columnas irrelevantes</span></span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>irrelevant_columns <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"...1"</span>, <span class="st">"full_name"</span>, <span class="st">"place_of_birth"</span>, <span class="st">"shirt_nr"</span>, <span class="st">"foot"</span>, <span class="st">"contract_expires"</span>, <span class="st">"joined_club"</span>, <span class="st">"outfitter"</span>)</span>
-<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Eliminar columnas con valores nulos</span></span>
-<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>df_clean <span class="ot">&lt;-</span> df[, <span class="sc">!</span><span class="fu">names</span>(df) <span class="sc">%in%</span> irrelevant_columns]</span>
-<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Eliminar filas duplicadas</span></span>
-<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a>df_clean <span class="ot">&lt;-</span> df_clean[<span class="sc">!</span><span class="fu">duplicated</span>(df_clean), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Identificar columnas irrelevantes</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>irrelevant_columns <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"...1"</span>, <span class="st">"full_name"</span>, <span class="st">"place_of_birth"</span>, <span class="st">"shirt_nr"</span>, <span class="st">"foot"</span>, <span class="st">"contract_expires"</span>, <span class="st">"joined_club"</span>, <span class="st">"outfitter"</span>)</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Eliminar columnas con valores nulos</span></span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>df_clean <span class="ot">&lt;-</span> df[, <span class="sc">!</span><span class="fu">names</span>(df) <span class="sc">%in%</span> irrelevant_columns]</span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Eliminar filas duplicadas</span></span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a>df_clean <span class="ot">&lt;-</span> df_clean[<span class="sc">!</span><span class="fu">duplicated</span>(df_clean), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Después de realizar estas acciones, puedes mostrar el resumen actualizado del conjunto de datos para confirmar que las columnas innecesarias han sido eliminadas.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar resumen del conjunto de datos actualizado</span></span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar resumen del conjunto de datos actualizado</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     name                age            height      nationality       
  Length:515         Min.   :17.00   Min.   :1.680   Length:515        
@@ -1168,6 +2745,63 @@ be plotted.</code></pre>
                    </code></pre>
 </div>
 </div>
+</section>
+<section id="modelado-de-la-relación-entre-la-edad-y-el-precio-máximo-de-transferencia-de-los-jugadores." class="level2">
+<h2 class="anchored" data-anchor-id="modelado-de-la-relación-entre-la-edad-y-el-precio-máximo-de-transferencia-de-los-jugadores."><strong>Modelado de la relación entre la edad y el precio máximo de transferencia de los jugadores.</strong></h2>
+<ul>
+<li><strong>Ajustar un modelo de regresión lineal:</strong> Se ajusta un modelo de regresión lineal para investigar la relación entre la edad de los jugadores y su precio máximo de transferencia en la Bundesliga.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Suponiendo que 'df' es tu dataframe</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecciona todas las columnas excepto 'name' y 'full_name'</span></span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, <span class="at">select =</span> <span class="sc">-</span><span class="fu">c</span>(name, full_name))</span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajustar un modelo de regresión lineal</span></span>
+<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a>lm_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(max_price <span class="sc">~</span> age, <span class="at">data =</span> df1)</span>
+<span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-8"><a href="#cb71-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen del modelo</span></span>
+<span id="cb71-9"><a href="#cb71-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = max_price ~ age, data = df1)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-17.681 -10.602  -6.597   2.705 134.530 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)  
+(Intercept)   3.9048     4.6263   0.844   0.3990  
+age           0.3731     0.1767   2.111   0.0353 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 18.6 on 508 degrees of freedom
+  (5 observations deleted due to missingness)
+Multiple R-squared:  0.008693,  Adjusted R-squared:  0.006742 
+F-statistic: 4.455 on 1 and 508 DF,  p-value: 0.03529</code></pre>
+</div>
+</div>
+<p>El resumen del modelo proporciona información sobre los coeficientes estimados, la significancia estadística y la bondad de ajuste del modelo.</p>
+<p>Posteriormente, se realizan predicciones para nuevas edades de jugadores utilizando el modelo de regresión ajustado.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Realizar predicciones para nuevas edades</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>new_ages <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">age =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">30</span>))</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>predictions <span class="ot">&lt;-</span> <span class="fu">predict</span>(lm_model, <span class="at">newdata =</span> new_ages)</span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>predictions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       1        2        3 
+11.36599 13.23127 15.09656 </code></pre>
+</div>
+</div>
+<p>Las predicciones proporcionan estimaciones del precio máximo de transferencia para las edades especificadas, lo que permite una mejor comprensión de la relación entre la edad y el precio máximo de los jugadores en la Bundesliga.</p>
+</section>
+<section id="conclusión" class="level2">
+<h2 class="anchored" data-anchor-id="conclusión"><strong>Conclusión:</strong></h2>
+<p>En este análisis exhaustivo de datos de jugadores de la Bundesliga utilizando R Studio, se ha explorado y examinado detalladamente una amplia gama de variables, desde características demográficas básicas como la edad y la nacionalidad hasta aspectos más específicos como el precio máximo de transferencia y la posición en el campo. Mediante el preprocesamiento de datos, la identificación y manejo de valores faltantes y duplicados, así como la exploración visual y estadística, se ha obtenido una comprensión profunda de la estructura y la distribución de los datos.</p>
+<p>Además, se han realizado análisis de relaciones clave entre variables, como la edad y el precio máximo de transferencia, lo que ha permitido descubrir patrones y tendencias significativas en los datos. El modelado de la relación entre estas variables mediante técnicas estadísticas como la regresión lineal ha proporcionado información valiosa sobre cómo ciertos factores influyen en el valor de mercado de los jugadores en la Bundesliga. Estos hallazgos no solo tienen implicaciones prácticas para los clubes y los agentes de jugadores, sino que también contribuyen al cuerpo de conocimientos en el campo del análisis deportivo y la economía del fútbol.</p>
+<p>En última instancia, este análisis demuestra el poder y la versatilidad de las herramientas y técnicas disponibles en R Studio para extraer información significativa de conjuntos de datos complejos. El proceso de exploración, modelado y visualización de datos proporciona una base sólida para la toma de decisiones informadas y la generación de ideas innovadoras en el ámbito del fútbol profesional.</p>
 </section>
 
 </main>
