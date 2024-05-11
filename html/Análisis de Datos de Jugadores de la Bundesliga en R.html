@@ -2637,10 +2637,6 @@ midfield - Defensive Midfield      midfield - Left Midfield
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in wordcloud(names(table(df$club)), freq = table(df$club), max.words =
-50, : 1.FC Köln could not be fit on page. It will not be plotted.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in wordcloud(names(table(df$club)), freq = table(df$club), max.words =
 50, : B. Leverkusen could not be fit on page. It will not be plotted.</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
@@ -2650,6 +2646,10 @@ midfield - Defensive Midfield      midfield - Left Midfield
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in wordcloud(names(table(df$club)), freq = table(df$club), max.words =
 50, : Bor. M'gladbach could not be fit on page. It will not be plotted.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in wordcloud(names(table(df$club)), freq = table(df$club), max.words =
+50, : Hertha BSC could not be fit on page. It will not be plotted.</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in wordcloud(names(table(df$club)), freq = table(df$club), max.words =
@@ -2667,25 +2667,16 @@ midfield - Defensive Midfield      midfield - Left Midfield
 <pre><code>Warning in wordcloud(names(table(df$club)), freq = table(df$club), max.words =
 50, : VfL Wolfsburg could not be fit on page. It will not be plotted.</code></pre>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in wordcloud(names(table(df$club)), freq = table(df$club), max.words =
-50, : Werder Bremen could not be fit on page. It will not be plotted.</code></pre>
-</div>
 <div class="cell-output-display">
 <p><img src="Análisis-de-Datos-de-Jugadores-de-la-Bundesliga-en-R_files/figure-html/Creación%20de%20gráficos%20de%20barras%20y%20nubes%20de%20palabras-3.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nube de palabras de los agentes de los jugadores</span></span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wordcloud</span>(<span class="fu">names</span>(<span class="fu">table</span>(df<span class="sc">$</span>player_agent)), <span class="at">freq =</span> <span class="fu">table</span>(df<span class="sc">$</span>player_agent), <span class="at">max.words =</span> <span class="dv">50</span>, <span class="at">min.freq =</span> <span class="dv">3</span>, <span class="at">random.order =</span> <span class="cn">FALSE</span>, <span class="at">colors =</span> <span class="fu">brewer.pal</span>(<span class="dv">8</span>, <span class="st">"Dark2"</span>),</span>
-<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">main =</span> <span class="st">"Nube de Palabras de Agentes de Jugadores"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nube de palabras de los agentes de los jugadores</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wordcloud</span>(<span class="fu">names</span>(<span class="fu">table</span>(df<span class="sc">$</span>player_agent)), <span class="at">freq =</span> <span class="fu">table</span>(df<span class="sc">$</span>player_agent), <span class="at">max.words =</span> <span class="dv">50</span>, <span class="at">min.freq =</span> <span class="dv">3</span>, <span class="at">random.order =</span> <span class="cn">FALSE</span>, <span class="at">colors =</span> <span class="fu">brewer.pal</span>(<span class="dv">8</span>, <span class="st">"Dark2"</span>),</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">main =</span> <span class="st">"Nube de Palabras de Agentes de Jugadores"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in wordcloud(names(table(df$player_agent)), freq =
 table(df$player_agent), : Sports360 GmbH could not be fit on page. It will not
 be plotted.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in wordcloud(names(table(df$player_agent)), freq =
-table(df$player_agent), : Signature - ISCM AG could not be fit on page. It will
-not be plotted.</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="Análisis-de-Datos-de-Jugadores-de-la-Bundesliga-en-R_files/figure-html/Creación%20de%20gráficos%20de%20barras%20y%20nubes%20de%20palabras-4.png" class="img-fluid" width="672"></p>
@@ -2705,19 +2696,19 @@ not be plotted.</code></pre>
 </ol></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Identificar columnas irrelevantes</span></span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>irrelevant_columns <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"...1"</span>, <span class="st">"full_name"</span>, <span class="st">"place_of_birth"</span>, <span class="st">"shirt_nr"</span>, <span class="st">"foot"</span>, <span class="st">"contract_expires"</span>, <span class="st">"joined_club"</span>, <span class="st">"outfitter"</span>)</span>
-<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Eliminar columnas con valores nulos</span></span>
-<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>df_clean <span class="ot">&lt;-</span> df[, <span class="sc">!</span><span class="fu">names</span>(df) <span class="sc">%in%</span> irrelevant_columns]</span>
-<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Eliminar filas duplicadas</span></span>
-<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a>df_clean <span class="ot">&lt;-</span> df_clean[<span class="sc">!</span><span class="fu">duplicated</span>(df_clean), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Identificar columnas irrelevantes</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>irrelevant_columns <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"...1"</span>, <span class="st">"full_name"</span>, <span class="st">"place_of_birth"</span>, <span class="st">"shirt_nr"</span>, <span class="st">"foot"</span>, <span class="st">"contract_expires"</span>, <span class="st">"joined_club"</span>, <span class="st">"outfitter"</span>)</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Eliminar columnas con valores nulos</span></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>df_clean <span class="ot">&lt;-</span> df[, <span class="sc">!</span><span class="fu">names</span>(df) <span class="sc">%in%</span> irrelevant_columns]</span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Eliminar filas duplicadas</span></span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a>df_clean <span class="ot">&lt;-</span> df_clean[<span class="sc">!</span><span class="fu">duplicated</span>(df_clean), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Después de realizar estas acciones, puedes mostrar el resumen actualizado del conjunto de datos para confirmar que las columnas innecesarias han sido eliminadas.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar resumen del conjunto de datos actualizado</span></span>
-<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar resumen del conjunto de datos actualizado</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     name                age            height      nationality       
  Length:515         Min.   :17.00   Min.   :1.680   Length:515        
@@ -2752,15 +2743,15 @@ not be plotted.</code></pre>
 <li><strong>Ajustar un modelo de regresión lineal:</strong> Se ajusta un modelo de regresión lineal para investigar la relación entre la edad de los jugadores y su precio máximo de transferencia en la Bundesliga.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Suponiendo que 'df' es tu dataframe</span></span>
-<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecciona todas las columnas excepto 'name' y 'full_name'</span></span>
-<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, <span class="at">select =</span> <span class="sc">-</span><span class="fu">c</span>(name, full_name))</span>
-<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajustar un modelo de regresión lineal</span></span>
-<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a>lm_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(max_price <span class="sc">~</span> age, <span class="at">data =</span> df1)</span>
-<span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-8"><a href="#cb71-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen del modelo</span></span>
-<span id="cb71-9"><a href="#cb71-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Suponiendo que 'df' es tu dataframe</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecciona todas las columnas excepto 'name' y 'full_name'</span></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, <span class="at">select =</span> <span class="sc">-</span><span class="fu">c</span>(name, full_name))</span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajustar un modelo de regresión lineal</span></span>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a>lm_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(max_price <span class="sc">~</span> age, <span class="at">data =</span> df1)</span>
+<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen del modelo</span></span>
+<span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -2786,10 +2777,10 @@ F-statistic: 4.455 on 1 and 508 DF,  p-value: 0.03529</code></pre>
 <p>El resumen del modelo proporciona información sobre los coeficientes estimados, la significancia estadística y la bondad de ajuste del modelo.</p>
 <p>Posteriormente, se realizan predicciones para nuevas edades de jugadores utilizando el modelo de regresión ajustado.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Realizar predicciones para nuevas edades</span></span>
-<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>new_ages <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">age =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">30</span>))</span>
-<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>predictions <span class="ot">&lt;-</span> <span class="fu">predict</span>(lm_model, <span class="at">newdata =</span> new_ages)</span>
-<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>predictions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Realizar predicciones para nuevas edades</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>new_ages <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">age =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">30</span>))</span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>predictions <span class="ot">&lt;-</span> <span class="fu">predict</span>(lm_model, <span class="at">newdata =</span> new_ages)</span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>predictions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       1        2        3 
 11.36599 13.23127 15.09656 </code></pre>
@@ -2797,8 +2788,8 @@ F-statistic: 4.455 on 1 and 508 DF,  p-value: 0.03529</code></pre>
 </div>
 <p>Las predicciones proporcionan estimaciones del precio máximo de transferencia para las edades especificadas, lo que permite una mejor comprensión de la relación entre la edad y el precio máximo de los jugadores en la Bundesliga.</p>
 </section>
-<section id="conclusión" class="level2">
-<h2 class="anchored" data-anchor-id="conclusión"><strong>Conclusión:</strong></h2>
+<section id="conclusión." class="level2">
+<h2 class="anchored" data-anchor-id="conclusión."><strong>Conclusión.</strong></h2>
 <p>En este análisis exhaustivo de datos de jugadores de la Bundesliga utilizando R Studio, se ha explorado y examinado detalladamente una amplia gama de variables, desde características demográficas básicas como la edad y la nacionalidad hasta aspectos más específicos como el precio máximo de transferencia y la posición en el campo. Mediante el preprocesamiento de datos, la identificación y manejo de valores faltantes y duplicados, así como la exploración visual y estadística, se ha obtenido una comprensión profunda de la estructura y la distribución de los datos.</p>
 <p>Además, se han realizado análisis de relaciones clave entre variables, como la edad y el precio máximo de transferencia, lo que ha permitido descubrir patrones y tendencias significativas en los datos. El modelado de la relación entre estas variables mediante técnicas estadísticas como la regresión lineal ha proporcionado información valiosa sobre cómo ciertos factores influyen en el valor de mercado de los jugadores en la Bundesliga. Estos hallazgos no solo tienen implicaciones prácticas para los clubes y los agentes de jugadores, sino que también contribuyen al cuerpo de conocimientos en el campo del análisis deportivo y la economía del fútbol.</p>
 <p>En última instancia, este análisis demuestra el poder y la versatilidad de las herramientas y técnicas disponibles en R Studio para extraer información significativa de conjuntos de datos complejos. El proceso de exploración, modelado y visualización de datos proporciona una base sólida para la toma de decisiones informadas y la generación de ideas innovadoras en el ámbito del fútbol profesional.</p>

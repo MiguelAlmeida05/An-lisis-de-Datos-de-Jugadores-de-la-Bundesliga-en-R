@@ -358,8 +358,8 @@ predictions
 ```
 
 Las predicciones proporcionan estimaciones del precio máximo de transferencia para las edades especificadas, lo que permite una mejor comprensión de la relación entre la edad y el precio máximo de los jugadores en la Bundesliga.
-
-## **Conclusión:**
+  
+## **Conclusión.**
 
 En este análisis exhaustivo de datos de jugadores de la Bundesliga utilizando R Studio, se ha explorado y examinado detalladamente una amplia gama de variables, desde características demográficas básicas como la edad y la nacionalidad hasta aspectos más específicos como el precio máximo de transferencia y la posición en el campo. Mediante el preprocesamiento de datos, la identificación y manejo de valores faltantes y duplicados, así como la exploración visual y estadística, se ha obtenido una comprensión profunda de la estructura y la distribución de los datos.
 
